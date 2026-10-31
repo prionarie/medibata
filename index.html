@@ -1,0 +1,2673 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"
+    />
+    <title>MediBata | Barangay Health Center</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#c62828">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Segoe UI",
+          Roboto,
+          system-ui,
+          -apple-system,
+          sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #fce4ec 0%, #ffebee 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 10px;
+      }
+
+      .app-container {
+        width: 100%;
+        max-width: 430px;
+        background: #ffffff;
+        height: 92vh;
+        max-height: 900px;
+        box-shadow: 0 25px 50px rgba(183, 28, 28, 0.15);
+        border-radius: 28px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        border: 2px solid #ffcdd2;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #c62828 0%, #b71c1c 100%);
+        color: white;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 700;
+        font-size: 1.4rem;
+        letter-spacing: 0.5px;
+        border-bottom: 3px solid #ff5252;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .header i {
+        font-size: 1.8rem;
+      }
+
+      .logout-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: all 0.3s;
+      }
+
+      .logout-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        background: #fafafa;
+      }
+
+      .card {
+        background: white;
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        border: 1px solid #f5f5f5;
+        transition: all 0.3s;
+      }
+
+      .card:hover {
+        box-shadow: 0 4px 16px rgba(183, 28, 28, 0.1);
+      }
+
+      .stat-card {
+        background: white;
+        border-left: 4px solid #c62828;
+        padding: 12px 16px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .btn {
+        background: #c62828;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: all 0.3s;
+        font-size: 0.85rem;
+        letter-spacing: 0.3px;
+      }
+
+      .btn:hover {
+        background: #b71c1c;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(183, 28, 28, 0.3);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: #c62828;
+        border: 2px solid #c62828;
+      }
+
+      .btn-outline:hover {
+        background: #c62828;
+        color: white;
+      }
+
+      .btn-small {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+      }
+
+      .btn-white {
+        background: white;
+        color: #c62828;
+        border: 2px solid #c62828;
+      }
+
+      .btn-white:hover {
+        background: #fce4ec;
+        color: #c62828;
+      }
+
+      .btn-danger {
+        background: #d32f2f;
+      }
+
+      .btn-success {
+        background: #2e7d32;
+      }
+
+      .btn-warning {
+        background: #f57c00;
+      }
+
+      .input-field {
+        width: 100%;
+        padding: 10px 14px;
+        border-radius: 25px;
+        border: 2px solid #e0e0e0;
+        margin: 5px 0;
+        font-size: 0.9rem;
+        background: #fafafa;
+        transition: all 0.3s;
+      }
+
+      .input-field:focus {
+        outline: none;
+        border-color: #c62828;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.1);
+      }
+
+      select.input-field {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23c62828' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        padding-right: 35px;
+      }
+
+      .nav-bottom {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background: white;
+        border-top: 2px solid #ffcdd2;
+        padding: 8px 0 12px;
+      }
+
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #999;
+        font-size: 0.65rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        padding: 4px 8px;
+        border-radius: 12px;
+      }
+
+      .nav-item i {
+        font-size: 1.4rem;
+        margin-bottom: 2px;
+      }
+
+      .active-nav {
+        color: #c62828;
+        font-weight: 700;
+        transform: scale(1.05);
+      }
+
+      .table-container {
+        overflow-x: auto;
+        border-radius: 12px;
+        border: 1px solid #e0e0e0;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.75rem;
+        min-width: 500px;
+      }
+
+      th {
+        background: #c62828;
+        color: white;
+        padding: 10px 8px;
+        font-weight: 600;
+        font-size: 0.7rem;
+      }
+
+      td,
+      th {
+        border: 1px solid #e0e0e0;
+        padding: 8px;
+        text-align: center;
+      }
+
+      tr:nth-child(even) {
+        background: #fce4ec;
+      }
+
+      .badge {
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        display: inline-block;
+      }
+
+      .badge-red {
+        background: #ffcdd2;
+        color: #c62828;
+      }
+      .badge-green {
+        background: #c8e6c9;
+        color: #2e7d32;
+      }
+      .badge-yellow {
+        background: #fff9c4;
+        color: #f57f17;
+      }
+      .badge-orange {
+        background: #ffe0b2;
+        color: #e65100;
+      }
+      .badge-blue {
+        background: #bbdefb;
+        color: #1565c0;
+      }
+      .badge-purple {
+        background: #e1bee7;
+        color: #6a1b9a;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal-content {
+        background: white;
+        padding: 24px;
+        border-radius: 20px;
+        max-width: 350px;
+        width: 90%;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .strength-bar {
+        height: 4px;
+        background: #e0e0e0;
+        border-radius: 2px;
+        margin-top: 4px;
+        overflow: hidden;
+      }
+
+      .strength-fill {
+        height: 100%;
+        transition:
+          width 0.3s,
+          background 0.3s;
+      }
+
+      .content::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      .content::-webkit-scrollbar-thumb {
+        background: #c62828;
+        border-radius: 4px;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+      .flex-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .text-small {
+        font-size: 0.75rem;
+        color: #666;
+      }
+      .mb-2 {
+        margin-bottom: 8px;
+      }
+      .mt-2 {
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container" id="appContainer">
+      <div class="header" id="appHeader">
+        <div class="header-left">
+          <i class="fas fa-heartbeat"></i>
+          <span>MediBata</span>
+        </div>
+        <button
+          class="logout-btn hidden"
+          id="logoutBtn"
+          onclick="showLogoutModal()"
+        >
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+
+      <div class="content" id="mainContent"></div>
+      <div class="nav-bottom hidden" id="bottomNav"></div>
+    </div>
+
+    <div class="modal" id="logoutModal">
+      <div class="modal-content">
+        <h3 style="color: #c62828">Confirm Logout</h3>
+        <p>Are you sure you want to log out?</p>
+        <div
+          class="flex-wrap"
+          style="margin-top: 16px; justify-content: flex-end"
+        >
+          <button class="btn btn-outline" onclick="closeLogoutModal()">
+            Cancel
+          </button>
+          <button class="btn" onclick="logout()">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="confirmModal">
+      <div class="modal-content" id="confirmModalContent"></div>
+    </div>
+
+    <script>
+      const BMI_THRESHOLDS = {
+        Toddlers: {
+          underweight: 14.0,
+          normal: [14.0, 17.0],
+          overweight: [17.1, 18.0],
+          obese: 18.0,
+        },
+        Preschool: {
+          underweight: 13.5,
+          normal: [13.5, 17.0],
+          overweight: [17.1, 18.5],
+          obese: 18.5,
+        },
+        "School Age": {
+          underweight: 14.0,
+          normal: [14.0, 20.0],
+          overweight: [20.1, 23.0],
+          obese: 23.0,
+        },
+        Adolescent: {
+          underweight: 16.5,
+          normal: [16.5, 24.0],
+          overweight: [24.1, 28.0],
+          obese: 28.0,
+        },
+      };
+
+      const DEFAULT_DB = {
+        admins: [
+          {
+            id: "admin1",
+            username: "admin",
+            password: "admin123",
+            email: "admin@medibata.ph",
+            fullName: "Dr. Maria Santos",
+            position: "Head Health Worker",
+          },
+        ],
+        parents: [
+          {
+            id: "parent1",
+            firstName: "Juan",
+            middleName: "M",
+            lastName: "Dela Cruz",
+            parentType: "Father",
+            sex: "Male",
+            dob: "1990-05-10",
+            age: 36,
+            occupation: "Driver",
+            email: "juan@email.com",
+            contactNumber: "09171234567",
+            address: "123 Orphiucus St",
+            password: "parent123",
+            verified: true,
+            childrenIds: ["child1", "child2", "child3"],
+          },
+        ],
+        children: [
+          {
+            id: "child1",
+            firstName: "Ana",
+            middleName: "Marie",
+            lastName: "Dela Cruz",
+            sex: "Female",
+            dob: "2023-03-15",
+            address: "123 Caduceus St",
+            parents: [
+              {
+                name: "Juan Dela Cruz",
+                contact: "09171234567",
+                type: "Father",
+              },
+              {
+                name: "Maria Dela Cruz",
+                contact: "09171234568",
+                type: "Mother",
+              },
+            ],
+            measurements: [
+              {
+                date: "2026-05-10",
+                height: 85,
+                weight: 12.5,
+                bmi: "17.3",
+                status: "Normal",
+              },
+            ],
+            ageLevel: "Toddlers",
+          },
+          {
+            id: "child2",
+            firstName: "Ben",
+            middleName: "",
+            lastName: "Dela Cruz",
+            sex: "Male",
+            dob: "2019-08-20",
+            address: "123 Caduceus St",
+            parents: [
+              {
+                name: "Juan Dela Cruz",
+                contact: "09171234567",
+                type: "Father",
+              },
+            ],
+            measurements: [
+              {
+                date: "2026-05-10",
+                height: 115,
+                weight: 18.0,
+                bmi: "13.6",
+                status: "Underweight",
+              },
+            ],
+            ageLevel: "School Age",
+          },
+          {
+            id: "child3",
+            firstName: "Carla",
+            middleName: "",
+            lastName: "Dela Cruz",
+            sex: "Female",
+            dob: "2010-11-02",
+            address: "123 Caduceus St",
+            parents: [
+              {
+                name: "Juan Dela Cruz",
+                contact: "09171234567",
+                type: "Father",
+              },
+            ],
+            measurements: [
+              {
+                date: "2026-05-10",
+                height: 155,
+                weight: 65.0,
+                bmi: "27.1",
+                status: "Overweight",
+              },
+            ],
+            ageLevel: "Adolescent",
+          },
+        ],
+        nutritionPlans: [
+          {
+            id: "plan1",
+            ageLevels: ["Toddlers"],
+            nutritionalStatuses: ["Normal"],
+            weekStart: "2026-05-18",
+            weekEnd: "2026-05-24",
+            meals: {
+              Monday: {
+                breakfast: "Oatmeal & milk",
+                lunch: "Chicken soup",
+                dinner: "Veggie puree",
+                snacks: "Banana",
+              },
+              Tuesday: {
+                breakfast: "Scrambled egg",
+                lunch: "Fish & rice",
+                dinner: "Veggie soup",
+                snacks: "Apple slices",
+              },
+              Wednesday: {
+                breakfast: "Pancakes",
+                lunch: "Beef stew",
+                dinner: "Chicken porridge",
+                snacks: "Yogurt",
+              },
+              Thursday: {
+                breakfast: "Cereal & milk",
+                lunch: "Pork adobo",
+                dinner: "Fish fillet",
+                snacks: "Fruit cup",
+              },
+              Friday: {
+                breakfast: "Toast & egg",
+                lunch: "Tinola",
+                dinner: "Veggie rice",
+                snacks: "Cheese sticks",
+              },
+              Saturday: {
+                breakfast: "Rice porridge",
+                lunch: "Fish escabeche",
+                dinner: "Chicken nuggets",
+                snacks: "Grapes",
+              },
+              Sunday: {
+                breakfast: "French toast",
+                lunch: "Nilaga",
+                dinner: "Pasta",
+                snacks: "Crackers",
+              },
+            },
+          },
+          {
+            id: "plan2",
+            ageLevels: ["School Age"],
+            nutritionalStatuses: ["Underweight"],
+            weekStart: "2026-05-18",
+            weekEnd: "2026-05-24",
+            meals: {
+              Monday: {
+                breakfast: "Egg sandwich",
+                lunch: "Beef steak & rice",
+                dinner: "Creamy pasta",
+                snacks: "Peanut butter sandwich",
+              },
+              Tuesday: {
+                breakfast: "Pancakes & syrup",
+                lunch: "Fried chicken",
+                dinner: "Mac & cheese",
+                snacks: "Milkshake",
+              },
+              Wednesday: {
+                breakfast: "Omelette",
+                lunch: "Pork chop",
+                dinner: "Spaghetti",
+                snacks: "Cheese bread",
+              },
+              Thursday: {
+                breakfast: "Waffles",
+                lunch: "Fish & chips",
+                dinner: "Burger steak",
+                snacks: "Smoothie",
+              },
+              Friday: {
+                breakfast: "Bacon & eggs",
+                lunch: "Chicken curry",
+                dinner: "Pizza",
+                snacks: "Yogurt parfait",
+              },
+              Saturday: {
+                breakfast: "Cereal bar",
+                lunch: "Meatballs",
+                dinner: "Lasagna",
+                snacks: "Trail mix",
+              },
+              Sunday: {
+                breakfast: "Hash browns",
+                lunch: "Roast beef",
+                dinner: "Carbonara",
+                snacks: "Ice cream",
+              },
+            },
+          },
+          {
+            id: "plan3",
+            ageLevels: ["Adolescent"],
+            nutritionalStatuses: ["Overweight"],
+            weekStart: "2026-05-18",
+            weekEnd: "2026-05-24",
+            meals: {
+              Monday: {
+                breakfast: "Smoothie bowl",
+                lunch: "Grilled chicken salad",
+                dinner: "Steamed fish",
+                snacks: "Nuts",
+              },
+              Tuesday: {
+                breakfast: "Oatmeal & berries",
+                lunch: "Quinoa bowl",
+                dinner: "Veggie stir-fry",
+                snacks: "Rice cakes",
+              },
+              Wednesday: {
+                breakfast: "Greek yogurt",
+                lunch: "Turkey wrap",
+                dinner: "Grilled shrimp",
+                snacks: "Celery sticks",
+              },
+              Thursday: {
+                breakfast: "Egg white omelette",
+                lunch: "Tuna salad",
+                dinner: "Baked chicken",
+                snacks: "Almonds",
+              },
+              Friday: {
+                breakfast: "Protein smoothie",
+                lunch: "Salmon & veggies",
+                dinner: "Tofu stir-fry",
+                snacks: "Edamame",
+              },
+              Saturday: {
+                breakfast: "Chia pudding",
+                lunch: "Chicken Caesar",
+                dinner: "Fish tacos",
+                snacks: "Fruit salad",
+              },
+              Sunday: {
+                breakfast: "Avocado toast",
+                lunch: "Lean beef wrap",
+                dinner: "Veggie pasta",
+                snacks: "Dark chocolate",
+              },
+            },
+          },
+        ],
+        healthPrograms: [
+          {
+            id: "prog1",
+            title: "Immunization Drive",
+            type: "Vaccination",
+            dateTime: "2026-06-15 09:00",
+            location: "Barangay Health Center",
+            ageLevels: ["Toddlers"],
+            nutritionalStatuses: ["Normal", "Underweight"],
+          },
+          {
+            id: "prog2",
+            title: "Nutrition Workshop",
+            type: "Education",
+            dateTime: "2026-05-20 14:00",
+            location: "Barangay Hall",
+            ageLevels: ["School Age"],
+            nutritionalStatuses: ["Underweight"],
+          },
+          {
+            id: "prog3",
+            title: "Fitness Program",
+            type: "Exercise",
+            dateTime: "2026-05-25 08:00",
+            location: "Covered Court",
+            ageLevels: ["Adolescent"],
+            nutritionalStatuses: ["Overweight", "Obese"],
+          },
+        ],
+        pendingParents: [],
+        pendingUpdates: [],
+      };
+
+      function initDB() {
+        if (!localStorage.getItem("medibata_db")) {
+          localStorage.setItem("medibata_db", JSON.stringify(DEFAULT_DB));
+        } else {
+          const db = JSON.parse(localStorage.getItem("medibata_db"));
+          if (!db.pendingUpdates) {
+            db.pendingUpdates = [];
+            localStorage.setItem("medibata_db", JSON.stringify(db));
+          }
+        }
+      }
+      initDB();
+
+      const DB = {
+        get() {
+          return JSON.parse(localStorage.getItem("medibata_db"));
+        },
+        set(data) {
+          localStorage.setItem("medibata_db", JSON.stringify(data));
+        },
+      };
+
+      let currentUser = null;
+      let currentScreen = "login";
+
+      function getAgeLevel(dob) {
+        const age = new Date().getFullYear() - new Date(dob).getFullYear();
+        if (age <= 3) return "Toddlers";
+        if (age <= 5) return "Preschool";
+        if (age <= 12) return "School Age";
+        return "Adolescent";
+      }
+
+      function getAge(dob) {
+        const today = new Date();
+        const birth = new Date(dob);
+        let age = today.getFullYear() - birth.getFullYear();
+        const m = today.getMonth() - birth.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+        return age;
+      }
+
+      function calculateBMI(heightCm, weightKg) {
+        if (!heightCm || !weightKg || heightCm <= 0) return null;
+        return (weightKg / (heightCm / 100) ** 2).toFixed(1);
+      }
+
+      function getNutritionalStatus(bmi, ageLevel) {
+        const bmiVal = parseFloat(bmi);
+        const thresholds = BMI_THRESHOLDS[ageLevel];
+        if (!thresholds || !bmiVal) return "Unknown";
+        if (bmiVal < thresholds.underweight) return "Underweight";
+        if (bmiVal <= thresholds.normal[1]) return "Normal";
+        if (bmiVal <= thresholds.overweight[1]) return "Overweight";
+        return "Obese";
+      }
+
+      function getStatusColor(status) {
+        const colors = {
+          Underweight: "#ff9800",
+          Normal: "#4caf50",
+          Overweight: "#f44336",
+          Obese: "#b71c1c",
+        };
+        return colors[status] || "#757575";
+      }
+
+      function getProgramStatus(dateTime) {
+        const now = new Date();
+        const progDate = new Date(dateTime);
+        if (progDate.toDateString() === now.toDateString()) return "Ongoing";
+        if (progDate > now) return "Upcoming";
+        return "Passed";
+      }
+
+      function getProgramStatusColor(status) {
+        const colors = {
+          Ongoing: "#4caf50",
+          Upcoming: "#2196f3",
+          Passed: "#9e9e9e",
+        };
+        return colors[status] || "#757575";
+      }
+
+      function renderApp() {
+        const logoutBtn = document.getElementById("logoutBtn");
+        const bottomNav = document.getElementById("bottomNav");
+
+        if (!currentUser) {
+          logoutBtn.classList.add("hidden");
+          bottomNav.classList.add("hidden");
+          renderLogin();
+        } else {
+          logoutBtn.classList.remove("hidden");
+          bottomNav.classList.remove("hidden");
+
+          if (currentUser.role === "admin") {
+            renderAdminNav();
+            switch (currentScreen) {
+              case "dashboard":
+                renderAdminDashboard();
+                break;
+              case "children":
+                renderChildrenProfiles();
+                break;
+              case "nutrition":
+                renderNutritionPlans();
+                break;
+              case "programs":
+                renderHealthPrograms();
+                break;
+              case "parents":
+                renderParentAccounts();
+                break;
+              case "account":
+                renderAccountSettings();
+                break;
+              case "pending":
+                renderPendingUpdates();
+                break;
+              default:
+                renderAdminDashboard();
+            }
+          } else {
+            renderParentNav();
+            switch (currentScreen) {
+              case "parentChildren":
+                renderParentChildrenView();
+                break;
+              case "parentPlans":
+                renderParentNutritionView();
+                break;
+              case "parentPrograms":
+                renderParentProgramsView();
+                break;
+              case "parentAccount":
+                renderParentAccountSettings();
+                break;
+              default:
+                renderParentChildrenView();
+            }
+          }
+        }
+      }
+
+      function navigate(screen) {
+        currentScreen = screen;
+        renderApp();
+      }
+
+      function renderLogin() {
+        document.getElementById("mainContent").innerHTML = `
+    <div style="padding:20px 0;">
+      <div class="card" style="text-align:center;">
+        <i class="fas fa-heartbeat" style="font-size:3rem; color:#c62828;"></i>
+        <h2 style="color:#c62828; margin:10px 0;">MediBata</h2>
+        <p style="color:#666;">Barangay Health Center</p>
+      </div>
+      
+      <div class="card" style="margin-top:16px;">
+        <select class="input-field" id="roleSelect" onchange="toggleLoginForm()">
+          <option value="admin">Barangay Health Worker</option>
+          <option value="parent">Parent/Guardian</option>
+        </select>
+        
+        <input id="loginIdentifier" class="input-field" placeholder="Username">
+        <input id="loginPassword" type="password" class="input-field" placeholder="Password">
+        
+        <button class="btn" style="width:100%;" onclick="login()">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+        
+        <p id="signupLink" style="margin-top:12px; text-align:center; display:none;">
+          Don't have an account? <a href="#" onclick="renderSignup()" style="color:#c62828; font-weight:600;">Sign Up</a>
+        </p>
+      </div>
+      
+      <div class="card" id="demoCard" style="margin-top:12px; background:#fce4ec;"></div>
+    </div>
+  `;
+        toggleLoginForm();
+      }
+
+      function toggleLoginForm() {
+        const role = document.getElementById("roleSelect")?.value;
+        const identifier = document.getElementById("loginIdentifier");
+        const signupLink = document.getElementById("signupLink");
+        const demoCard = document.getElementById("demoCard");
+
+        if (role === "admin") {
+          if (identifier) identifier.placeholder = "Username";
+          if (signupLink) signupLink.style.display = "none";
+          if (demoCard)
+            demoCard.innerHTML = `<p style="font-weight:600; color:#c62828;">Demo Admin:</p><p style="font-size:0.85rem;"><strong>Username:</strong> admin<br><strong>Password:</strong> admin123</p>`;
+        } else {
+          if (identifier) identifier.placeholder = "Email or Contact Number";
+          if (signupLink) signupLink.style.display = "block";
+          if (demoCard)
+            demoCard.innerHTML = `<p style="font-weight:600; color:#c62828;">Demo Parent:</p><p style="font-size:0.85rem;"><strong>Email:</strong> juan@email.com<br><strong>Password:</strong> parent123</p>`;
+        }
+      }
+
+      function renderSignup() {
+        document.getElementById("mainContent").innerHTML = `
+    <div class="card">
+      <h3 style="color:#c62828;">Parent/Guardian Sign Up</h3>
+      <input id="signFirstName" class="input-field" placeholder="First Name *" required>
+      <input id="signMiddle" class="input-field" placeholder="Middle Name (optional)">
+      <input id="signLastName" class="input-field" placeholder="Last Name *" required>
+      
+      <select id="signParentType" class="input-field">
+        <option value="">Select Parent Type</option>
+        <option>Mother</option>
+        <option>Father</option>
+        <option>Guardian</option>
+      </select>
+      
+      <select id="signSex" class="input-field">
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+      
+      <input id="signDob" type="date" class="input-field" onchange="computeAgeSignup()">
+      <input id="signAge" class="input-field" placeholder="Age" readonly>
+      <input id="signOccupation" class="input-field" placeholder="Occupation">
+      <input id="signEmail" class="input-field" placeholder="Email (optional)">
+      <input id="signContact" class="input-field" placeholder="Contact Number" required>
+      <input id="signAddress" class="input-field" placeholder="Address">
+      
+      <input id="signPassword" type="password" class="input-field" placeholder="Password" oninput="checkPasswordStrength()">
+      <div class="strength-bar"><div class="strength-fill" id="strengthFill" style="width:0%;"></div></div>
+      <p id="strengthText" class="text-small"></p>
+      
+      <input id="signConfirmPassword" type="password" class="input-field" placeholder="Confirm Password">
+      
+      <button class="btn" style="width:100%;" onclick="registerParent()">Register</button>
+      <button class="btn btn-outline" style="width:100%; margin-top:8px;" onclick="navigate('login'); renderLogin();">
+        Back to Login
+      </button>
+    </div>
+  `;
+      }
+
+      window.computeAgeSignup = function () {
+        const dob = document.getElementById("signDob").value;
+        if (dob) {
+          document.getElementById("signAge").value = getAge(dob);
+        }
+      };
+
+      window.checkPasswordStrength = function () {
+        const pwd = document.getElementById("signPassword")?.value || "";
+        const fill = document.getElementById("strengthFill");
+        const text = document.getElementById("strengthText");
+        let strength = 0;
+        if (pwd.length >= 8) strength++;
+        if (/[A-Z]/.test(pwd)) strength++;
+        if (/[a-z]/.test(pwd)) strength++;
+        if (/[0-9]/.test(pwd)) strength++;
+
+        const colors = ["#f44336", "#ff9800", "#ffeb3b", "#4caf50"];
+        const texts = ["Weak", "Fair", "Good", "Strong"];
+        const width = strength > 0 ? (strength / 4) * 100 : 0;
+
+        if (fill) {
+          fill.style.width = width + "%";
+          fill.style.background =
+            strength > 0 ? colors[strength - 1] : "#e0e0e0";
+        }
+        if (text) text.textContent = strength > 0 ? texts[strength - 1] : "";
+      };
+
+      window.login = function () {
+        const role = document.getElementById("roleSelect").value;
+        const identifier = document
+          .getElementById("loginIdentifier")
+          .value.trim();
+        const password = document.getElementById("loginPassword").value;
+        const db = DB.get();
+
+        if (role === "admin") {
+          const admin = db.admins.find(
+            (a) => a.username === identifier && a.password === password,
+          );
+          if (admin) {
+            currentUser = { role: "admin", data: admin };
+            navigate("dashboard");
+          } else alert("Invalid admin credentials");
+        } else {
+          const parent = db.parents.find(
+            (p) =>
+              (p.email === identifier || p.contactNumber === identifier) &&
+              p.password === password,
+          );
+          if (!parent) return alert("Account not found.");
+          if (!parent.verified)
+            return alert(
+              "Your account is pending verification or has been discarded.",
+            );
+          currentUser = { role: "parent", data: parent };
+          navigate("parentChildren");
+        }
+      };
+
+      window.registerParent = function () {
+        const password = document.getElementById("signPassword").value;
+        const confirm = document.getElementById("signConfirmPassword").value;
+
+        if (password !== confirm) return alert("Passwords do not match");
+        if (password.length < 8)
+          return alert("Password must be at least 8 characters");
+        if (!/[A-Z]/.test(password))
+          return alert("Password must contain uppercase letter");
+        if (!/[a-z]/.test(password))
+          return alert("Password must contain lowercase letter");
+        if (!/[0-9]/.test(password))
+          return alert("Password must contain a number");
+
+        const db = DB.get();
+        const newParent = {
+          id: "p_" + Date.now(),
+          firstName: document.getElementById("signFirstName").value,
+          middleName: document.getElementById("signMiddle").value,
+          lastName: document.getElementById("signLastName").value,
+          parentType: document.getElementById("signParentType").value,
+          sex: document.getElementById("signSex").value,
+          dob: document.getElementById("signDob").value,
+          age: parseInt(document.getElementById("signAge").value) || 0,
+          occupation: document.getElementById("signOccupation").value,
+          email: document.getElementById("signEmail").value,
+          contactNumber: document.getElementById("signContact").value,
+          address: document.getElementById("signAddress").value,
+          password: password,
+          verified: false,
+          childrenIds: [],
+        };
+
+        db.pendingParents.push(newParent);
+        DB.set(db);
+        alert("Registration successful! Please wait for admin verification.");
+        renderLogin();
+      };
+
+      window.showLogoutModal = () =>
+        document.getElementById("logoutModal").classList.add("active");
+      window.closeLogoutModal = () =>
+        document.getElementById("logoutModal").classList.remove("active");
+      window.logout = () => {
+        currentUser = null;
+        currentScreen = "login";
+        document.getElementById("logoutModal").classList.remove("active");
+        renderApp();
+      };
+
+      function showConfirm(title, message, onConfirm) {
+        document.getElementById("confirmModalContent").innerHTML = `
+    <h3 style="color:#c62828;">${title}</h3>
+    <p>${message}</p>
+    <div class="flex-wrap" style="margin-top:16px; justify-content:flex-end;">
+      <button class="btn btn-outline" onclick="document.getElementById('confirmModal').classList.remove('active')">Cancel</button>
+      <button class="btn btn-danger" id="confirmBtn">Confirm</button>
+    </div>
+  `;
+        document.getElementById("confirmModal").classList.add("active");
+        document.getElementById("confirmBtn").onclick = () => {
+          document.getElementById("confirmModal").classList.remove("active");
+          onConfirm();
+        };
+      }
+
+      function formatDate(dateString) {
+        if (!dateString) return "";
+        const date = new Date(dateString + "T00:00:00");
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+      }
+
+      function renderAdminNav() {
+        document.getElementById("bottomNav").innerHTML = `
+    <div class="nav-item ${currentScreen === "dashboard" ? "active-nav" : ""}" onclick="navigate('dashboard')">
+      <i class="fas fa-chart-pie"></i>
+    </div>
+    <div class="nav-item ${currentScreen === "children" ? "active-nav" : ""}" onclick="navigate('children')">
+      <i class="fas fa-child"></i>
+    </div>
+    <div class="nav-item ${currentScreen === "nutrition" ? "active-nav" : ""}" onclick="navigate('nutrition')">
+      <i class="fas fa-apple-alt"></i>
+    </div>
+    <div class="nav-item ${currentScreen === "programs" ? "active-nav" : ""}" onclick="navigate('programs')">
+      <i class="fas fa-calendar-alt"></i>
+    </div>
+    <div class="nav-item ${currentScreen === "parents" ? "active-nav" : ""}" onclick="navigate('parents')">
+      <i class="fas fa-users"></i>
+    </div>
+    <div class="nav-item ${currentScreen === "pending" ? "active-nav" : ""}" onclick="navigate('pending')">
+      <i class="fas fa-clock"></i>
+    </div>
+  `;
+      }
+
+      function renderParentNav() {
+        document.getElementById("bottomNav").innerHTML = `
+    <div class="nav-item ${currentScreen === "parentChildren" ? "active-nav" : ""}" onclick="navigate('parentChildren')">
+      <i class="fas fa-child"></i>
+    </div>
+    <div class="nav-item ${currentScreen === "parentPlans" ? "active-nav" : ""}" onclick="navigate('parentPlans')">
+      <i class="fas fa-utensils"></i>
+    </div>
+    <div class="nav-item ${currentScreen === "parentPrograms" ? "active-nav" : ""}" onclick="navigate('parentPrograms')">
+      <i class="fas fa-calendar-check"></i>
+    </div>
+    <div class="nav-item ${currentScreen === "parentAccount" ? "active-nav" : ""}" onclick="navigate('parentAccount')">
+      <i class="fas fa-cog"></i>
+    </div>
+  `;
+      }
+
+      function renderAdminDashboard() {
+        const db = DB.get();
+        const children = db.children;
+        const stats = { Normal: 0, Underweight: 0, Overweight: 0, Obese: 0 };
+        children.forEach((c) => {
+          const last = c.measurements.slice(-1)[0];
+          if (last) stats[last.status] = (stats[last.status] || 0) + 1;
+        });
+
+        document.getElementById("mainContent").innerHTML = `
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+      <div class="stat-card">
+        <i class="fas fa-user-md" style="color:#c62828;"></i>
+        <h3>${db.admins.length}</h3>
+        <small>Health Workers</small>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-users" style="color:#c62828;"></i>
+        <h3>${db.parents.length}</h3>
+        <small>Parents</small>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-child" style="color:#c62828;"></i>
+        <h3>${children.length}</h3>
+        <small>Children</small>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-chart-bar" style="color:#c62828;"></i>
+        <h3>${Object.values(stats).reduce((a, b) => a + b, 0)}</h3>
+        <small>Records</small>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h4 style="color:#c62828; margin-bottom:12px;">Nutritional Status Distribution</h4>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; justify-content:space-between;">
+          <span><span class="badge badge-green">Normal</span></span>
+          <span>${stats.Normal || 0} children</span>
+        </div>
+        <div style="background:#e0e0e0; border-radius:10px; height:8px;">
+          <div style="background:#4caf50; height:100%; width:${children.length ? ((stats.Normal || 0) / children.length) * 100 : 0}%; border-radius:10px;"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+          <span><span class="badge badge-yellow">Underweight</span></span>
+          <span>${stats.Underweight || 0} children</span>
+        </div>
+        <div style="background:#e0e0e0; border-radius:10px; height:8px;">
+          <div style="background:#ff9800; height:100%; width:${children.length ? ((stats.Underweight || 0) / children.length) * 100 : 0}%; border-radius:10px;"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+          <span><span class="badge badge-orange">Overweight</span></span>
+          <span>${stats.Overweight || 0} children</span>
+        </div>
+        <div style="background:#e0e0e0; border-radius:10px; height:8px;">
+          <div style="background:#f44336; height:100%; width:${children.length ? ((stats.Overweight || 0) / children.length) * 100 : 0}%; border-radius:10px;"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+          <span><span class="badge badge-red">Obese</span></span>
+          <span>${stats.Obese || 0} children</span>
+        </div>
+        <div style="background:#e0e0e0; border-radius:10px; height:8px;">
+          <div style="background:#b71c1c; height:100%; width:${children.length ? ((stats.Obese || 0) / children.length) * 100 : 0}%; border-radius:10px;"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h4 style="color:#c62828; margin-bottom:8px;">Quick Actions</h4>
+      <div class="flex-wrap">
+        <button class="btn btn-small" onclick="navigate('children')"><i class="fas fa-child"></i> Children</button>
+        <button class="btn btn-small" onclick="navigate('nutrition')"><i class="fas fa-apple-alt"></i> Plans</button>
+        <button class="btn btn-small" onclick="navigate('programs')"><i class="fas fa-calendar"></i> Programs</button>
+        <button class="btn btn-small" onclick="navigate('parents')"><i class="fas fa-users"></i> Parents</button>
+        <button class="btn btn-small" onclick="navigate('pending')"><i class="fas fa-clock"></i> Updates</button>
+        <button class="btn btn-small" onclick="navigate('account')"><i class="fas fa-cog"></i> Settings</button>
+      </div>
+    </div>
+  `;
+      }
+
+      function renderAccountSettings() {
+        document.getElementById("mainContent").innerHTML = `
+    <div class="card">
+      <h3 style="color:#c62828;">Account Settings</h3>
+      <label style="font-weight:600;">Username</label>
+      <input id="accUsername" class="input-field" value="${currentUser.data.username}" readonly>
+      <label style="font-weight:600;">Email</label>
+      <input id="accEmail" class="input-field" value="${currentUser.data.email || ""}">
+      <label style="font-weight:600;">Full Name</label>
+      <input id="accFullName" class="input-field" value="${currentUser.data.fullName || ""}">
+      <label style="font-weight:600;">Position</label>
+      <input id="accPosition" class="input-field" value="${currentUser.data.position || ""}">
+      <button class="btn mt-2" onclick="updateAccount()">Update Info</button>
+    </div>
+    
+    <div class="card">
+      <h4 style="color:#c62828;">Change Password</h4>
+      <input id="currentPass" type="password" class="input-field" placeholder="Current Password">
+      <input id="newPass" type="password" class="input-field" placeholder="New Password">
+      <input id="confirmNewPass" type="password" class="input-field" placeholder="Confirm New Password">
+      <button class="btn mt-2" onclick="updatePassword()">Update Password</button>
+    </div>
+    
+    <button class="btn btn-outline" onclick="navigate('dashboard')">Back to Dashboard</button>
+  `;
+      }
+
+      window.updateAccount = function () {
+        const db = DB.get();
+        const admin = db.admins.find((a) => a.id === currentUser.data.id);
+        admin.email = document.getElementById("accEmail").value;
+        admin.fullName = document.getElementById("accFullName").value;
+        admin.position = document.getElementById("accPosition").value;
+        currentUser.data = admin;
+        DB.set(db);
+        alert("Account updated successfully");
+      };
+
+      window.updatePassword = function () {
+        const current = document.getElementById("currentPass").value;
+        const newPass = document.getElementById("newPass").value;
+        const confirm = document.getElementById("confirmNewPass").value;
+
+        if (current !== currentUser.data.password)
+          return alert("Current password incorrect");
+        if (newPass !== confirm) return alert("Passwords do not match");
+        if (newPass.length < 8) return alert("Minimum 8 characters");
+
+        const db = DB.get();
+        const admin = db.admins.find((a) => a.id === currentUser.data.id);
+        admin.password = newPass;
+        currentUser.data = admin;
+        DB.set(db);
+        alert("Password updated successfully");
+      };
+
+      function renderChildrenProfiles() {
+        const db = DB.get();
+        const grouped = {};
+        db.children.forEach((c) => {
+          if (!grouped[c.ageLevel]) grouped[c.ageLevel] = [];
+          grouped[c.ageLevel].push(c);
+        });
+
+        let html = `<h3 style="color:#c62828;">Children Profiles</h3>
+    <button class="btn mb-2" onclick="showAddChildForm()"><i class="fas fa-plus"></i> Add Child</button>`;
+
+        for (const [age, children] of Object.entries(grouped)) {
+          html += `<div class="card"><h4 style="color:#c62828; margin-bottom:8px;">${age}</h4>`;
+          children.forEach((c) => {
+            const last = c.measurements.slice(-1)[0];
+            const status = last ? last.status : "No Data";
+            const childAge = getAge(c.dob);
+            html += `
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #eee;">
+          <div>
+            <strong>${c.firstName} ${c.lastName}</strong><br>
+            <small style="color:#666;">Age: ${childAge} • Status: ${status}</small>
+          </div>
+          <div class="flex-wrap">
+            <button class="btn btn-small" onclick="viewChildProfile('${c.id}')"><i class="fas fa-eye"></i></button>
+            <button class="btn btn-small btn-outline" onclick="showAddMeasurement('${c.id}')"><i class="fas fa-plus"></i></button>
+            <button class="btn btn-small btn-danger" onclick="deleteChild('${c.id}')"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>`;
+          });
+          html += `</div>`;
+        }
+        document.getElementById("mainContent").innerHTML = html;
+      }
+
+      function showAddChildForm() {
+        document.getElementById("mainContent").innerHTML = `
+    <div class="card">
+      <h3 style="color:#c62828;">Add Child</h3>
+      <input id="cFname" class="input-field" placeholder="First Name">
+      <input id="cMname" class="input-field" placeholder="Middle Name (optional)">
+      <input id="cLname" class="input-field" placeholder="Last Name">
+      <select id="cSex" class="input-field"><option>Male</option><option>Female</option></select>
+      <label style="font-weight:600;">Birthdate</label>
+      <input id="cDob" type="date" class="input-field" onchange="computeChildAge()">
+      <label style="font-weight:600;">Age</label>
+      <input id="cAge" class="input-field" placeholder="Age" readonly>
+      <input id="cAddress" class="input-field" placeholder="Address">
+      
+      <label style="font-weight:600; margin-top:8px;">Parents/Guardians</label>
+      <div id="parentsContainer">
+        <div class="flex-wrap" style="margin:5px 0;">
+          <input class="input-field parent-name" placeholder="Parent Name" style="flex:1;">
+          <input class="input-field parent-contact" placeholder="Contact Number" style="flex:1;">
+          <select class="input-field parent-type" style="width:100px;"><option>Mother</option><option>Father</option><option>Guardian</option></select>
+        </div>
+      </div>
+      <div class="flex-wrap mt-2">
+        <button class="btn btn-small btn-outline" onclick="addParentField()"><i class="fas fa-plus"></i> Add</button>
+        <button class="btn btn-small btn-danger" onclick="removeParentField()"><i class="fas fa-minus"></i> Remove</button>
+      </div>
+      
+      <div class="flex-wrap mt-2">
+        <button class="btn" onclick="saveChild()"><i class="fas fa-save"></i> Save Child</button>
+        <button class="btn btn-outline" onclick="navigate('children')"><i class="fas fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+  `;
+      }
+
+      window.computeChildAge = function () {
+        const dob = document.getElementById("cDob")?.value;
+        if (dob) document.getElementById("cAge").value = getAge(dob);
+      };
+
+      window.addParentField = () => {
+        const container = document.getElementById("parentsContainer");
+        const div = document.createElement("div");
+        div.className = "flex-wrap";
+        div.style.margin = "5px 0";
+        div.innerHTML = `
+    <input class="input-field parent-name" placeholder="Parent Name" style="flex:1;">
+    <input class="input-field parent-contact" placeholder="Contact Number" style="flex:1;">
+    <select class="input-field parent-type" style="width:100px;"><option>Mother</option><option>Father</option><option>Guardian</option></select>
+  `;
+        container.appendChild(div);
+      };
+
+      window.removeParentField = () => {
+        const container = document.getElementById("parentsContainer");
+        if (container.children.length > 1)
+          container.removeChild(container.lastChild);
+      };
+
+      window.saveChild = function () {
+        const db = DB.get();
+        const parentNames = document.querySelectorAll(".parent-name");
+        const parentContacts = document.querySelectorAll(".parent-contact");
+        const parentTypes = document.querySelectorAll(".parent-type");
+        const parents = [];
+        for (let i = 0; i < parentNames.length; i++) {
+          if (parentNames[i].value) {
+            parents.push({
+              name: parentNames[i].value,
+              contact: parentContacts[i].value,
+              type: parentTypes[i].value,
+            });
+          }
+        }
+
+        const dob = document.getElementById("cDob").value;
+        db.children.push({
+          id: "c_" + Date.now(),
+          firstName: document.getElementById("cFname").value,
+          middleName: document.getElementById("cMname").value,
+          lastName: document.getElementById("cLname").value,
+          sex: document.getElementById("cSex").value,
+          dob: dob,
+          address: document.getElementById("cAddress").value,
+          parents: parents,
+          measurements: [],
+          ageLevel: getAgeLevel(dob),
+        });
+        DB.set(db);
+        navigate("children");
+      };
+
+      window.deleteChild = function (childId) {
+        showConfirm(
+          "Delete Child",
+          "Are you sure you want to delete this child and all their records?",
+          () => {
+            const db = DB.get();
+            db.children = db.children.filter((c) => c.id !== childId);
+            DB.set(db);
+            navigate("children");
+          },
+        );
+      };
+
+      function viewChildProfile(childId) {
+        const db = DB.get();
+        const child = db.children.find((c) => c.id === childId);
+        if (!child) return;
+        const last = child.measurements.slice(-1)[0];
+        const childAge = getAge(child.dob);
+
+        document.getElementById("mainContent").innerHTML = `
+    <div class="card">
+      <h3 style="color:#c62828;">${child.firstName} ${child.lastName}</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:12px 0;">
+        <div><strong>Age:</strong> ${childAge}</div>
+        <div><strong>Sex:</strong> ${child.sex}</div>
+        <div><strong>Birthdate:</strong> ${child.dob}</div>
+        <div><strong>Address:</strong> ${child.address}</div>
+      </div>
+      ${
+        last
+          ? `
+        <div style="background:#fce4ec; padding:12px; border-radius:12px; margin:8px 0;">
+          <strong>Current Measurements</strong><br>
+          Height: ${last.height} cm • Weight: ${last.weight} kg • BMI: ${last.bmi}<br>
+          Status: <span class="badge" style="background:${getStatusColor(last.status)}; color:white;">${last.status}</span>
+        </div>
+      `
+          : "<p>No measurements recorded</p>"
+      }
+      <h4 style="margin-top:8px;">Parents/Guardians</h4>
+      ${child.parents.map((p) => `<p style="margin:4px 0;"><strong>${p.name}</strong> (${p.type}) • ${p.contact}</p>`).join("")}
+      <div class="flex-wrap mt-2">
+        <button class="btn" onclick="showAddMeasurement('${child.id}')"><i class="fas fa-plus"></i> Add Measurement</button>
+        <button class="btn btn-outline" onclick="viewMeasurementHistory('${child.id}')"><i class="fas fa-history"></i> History</button>
+        <button class="btn btn-outline" onclick="editChildProfile('${child.id}')"><i class="fas fa-edit"></i> Edit</button>
+        <button class="btn btn-outline" onclick="navigate('children')"><i class="fas fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+  `;
+      }
+
+      function editChildProfile(childId) {
+        const db = DB.get();
+        const child = db.children.find((c) => c.id === childId);
+        if (!child) return;
+
+        document.getElementById("mainContent").innerHTML = `
+    <div class="card">
+      <h3 style="color:#c62828;">Edit Child Profile</h3>
+      <label style="font-weight:600;">First Name</label>
+      <input id="editCFname" class="input-field" value="${child.firstName}">
+      <label style="font-weight:600;">Middle Name</label>
+      <input id="editCMname" class="input-field" value="${child.middleName || ""}">
+      <label style="font-weight:600;">Last Name</label>
+      <input id="editCLname" class="input-field" value="${child.lastName}">
+      <label style="font-weight:600;">Sex</label>
+      <select id="editCSex" class="input-field">
+        <option ${child.sex === "Male" ? "selected" : ""}>Male</option>
+        <option ${child.sex === "Female" ? "selected" : ""}>Female</option>
+      </select>
+      <label style="font-weight:600;">Birthdate</label>
+      <input id="editCDob" type="date" class="input-field" value="${child.dob}" onchange="updateEditChildAge()">
+      <label style="font-weight:600;">Age</label>
+      <input id="editCAge" class="input-field" value="${getAge(child.dob)}" readonly>
+      <label style="font-weight:600;">Address</label>
+      <input id="editCAddress" class="input-field" value="${child.address}">
+      
+      <label style="font-weight:600; margin-top:8px;">Parents/Guardians</label>
+      <div id="editParentsContainer">
+        ${child.parents
+          .map(
+            (p, i) => `
+          <div class="flex-wrap" style="margin:5px 0;">
+            <input class="input-field edit-parent-name" placeholder="Parent Name" style="flex:1;" value="${p.name}">
+            <input class="input-field edit-parent-contact" placeholder="Contact Number" style="flex:1;" value="${p.contact}">
+            <select class="input-field edit-parent-type" style="width:100px;">
+              <option ${p.type === "Mother" ? "selected" : ""}>Mother</option>
+              <option ${p.type === "Father" ? "selected" : ""}>Father</option>
+              <option ${p.type === "Guardian" ? "selected" : ""}>Guardian</option>
+            </select>
+          </div>
+        `,
+          )
+          .join("")}
+      </div>
+      <div class="flex-wrap mt-2">
+        <button class="btn btn-small btn-outline" onclick="addEditParentField()"><i class="fas fa-plus"></i> Add Parent</button>
+        <button class="btn btn-small btn-danger" onclick="removeEditParentField()"><i class="fas fa-minus"></i> Remove</button>
+      </div>
+      
+      <div class="flex-wrap mt-2">
+        <button class="btn" onclick="saveEditedChild('${childId}')"><i class="fas fa-save"></i> Save Changes</button>
+        <button class="btn btn-outline" onclick="viewChildProfile('${childId}')"><i class="fas fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+  `;
+      }
+
+      window.updateEditChildAge = function () {
+        const dob = document.getElementById("editCDob")?.value;
+        if (dob) document.getElementById("editCAge").value = getAge(dob);
+      };
+
+      window.addEditParentField = function () {
+        const container = document.getElementById("editParentsContainer");
+        const div = document.createElement("div");
+        div.className = "flex-wrap";
+        div.style.margin = "5px 0";
+        div.innerHTML = `
+    <input class="input-field edit-parent-name" placeholder="Parent Name" style="flex:1;">
+    <input class="input-field edit-parent-contact" placeholder="Contact Number" style="flex:1;">
+    <select class="input-field edit-parent-type" style="width:100px;">
+      <option>Mother</option><option>Father</option><option>Guardian</option>
+    </select>
+  `;
+        container.appendChild(div);
+      };
+
+      window.removeEditParentField = function () {
+        const container = document.getElementById("editParentsContainer");
+        if (container.children.length > 1)
+          container.removeChild(container.lastChild);
+      };
+
+      window.saveEditedChild = function (childId) {
+        const db = DB.get();
+        const child = db.children.find((c) => c.id === childId);
+
+        child.firstName = document.getElementById("editCFname").value;
+        child.middleName = document.getElementById("editCMname").value;
+        child.lastName = document.getElementById("editCLname").value;
+        child.sex = document.getElementById("editCSex").value;
+        child.dob = document.getElementById("editCDob").value;
+        child.address = document.getElementById("editCAddress").value;
+        child.ageLevel = getAgeLevel(child.dob);
+
+        const parentNames = document.querySelectorAll(".edit-parent-name");
+        const parentContacts = document.querySelectorAll(
+          ".edit-parent-contact",
+        );
+        const parentTypes = document.querySelectorAll(".edit-parent-type");
+        child.parents = [];
+        for (let i = 0; i < parentNames.length; i++) {
+          if (parentNames[i].value.trim()) {
+            child.parents.push({
+              name: parentNames[i].value,
+              contact: parentContacts[i].value,
+              type: parentTypes[i].value,
+            });
+          }
+        }
+
+        DB.set(db);
+        navigate("children");
+      };
+
+      function showAddMeasurement(childId) {
+        document.getElementById("mainContent").innerHTML = `
+    <div class="card">
+      <h3 style="color:#c62828;">Add Measurement</h3>
+      <label style="font-weight:600;">Height (cm)</label>
+      <input id="mHeight" type="number" class="input-field" placeholder="Height in cm" step="0.1">
+      <label style="font-weight:600;">Weight (kg)</label>
+      <input id="mWeight" type="number" class="input-field" placeholder="Weight in kg" step="0.1">
+      <label style="font-weight:600;">Date of Measurement</label>
+      <input id="mDate" type="date" class="input-field">
+      <div class="flex-wrap mt-2">
+        <button class="btn" onclick="saveMeasurement('${childId}')"><i class="fas fa-save"></i> Save</button>
+        <button class="btn btn-outline" onclick="navigate('children')"><i class="fas fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+  `;
+      }
+
+      window.saveMeasurement = function (childId) {
+        const db = DB.get();
+        const child = db.children.find((c) => c.id === childId);
+        const height = parseFloat(document.getElementById("mHeight").value);
+        const weight = parseFloat(document.getElementById("mWeight").value);
+        const date = document.getElementById("mDate").value;
+        if (!height || !weight || !date) return alert("Please fill all fields");
+        const bmi = calculateBMI(height, weight);
+        const status = getNutritionalStatus(bmi, child.ageLevel);
+
+        child.measurements.push({ date, height, weight, bmi, status });
+        DB.set(db);
+        navigate("children");
+      };
+
+      function viewMeasurementHistory(childId) {
+        const db = DB.get();
+        const child = db.children.find((c) => c.id === childId);
+        let html = `<div class="card"><h3 style="color:#c62828;">Measurement History</h3>
+    <div style="max-height:300px; overflow-y:auto;">
+    <table><tr><th>Date</th><th>Height</th><th>Weight</th><th>BMI</th><th>Status</th></tr>`;
+        child.measurements.forEach((m) => {
+          html += `<tr><td>${m.date}</td><td>${m.height} cm</td><td>${m.weight} kg</td><td>${m.bmi}</td>
+      <td><span class="badge" style="background:${getStatusColor(m.status)}; color:white;">${m.status}</span></td></tr>`;
+        });
+        html += `</table></div>
+    <button class="btn btn-outline mt-2" onclick="viewChildProfile('${childId}')"><i class="fas fa-arrow-left"></i> Back</button></div>`;
+        document.getElementById("mainContent").innerHTML = html;
+      }
+
+     function renderPendingUpdates() {
+  const db = DB.get();
+  let html = `<h3 style="color:#c62828;">Pending Measurement Updates</h3>`;
+  
+  if (!db.pendingUpdates || db.pendingUpdates.length === 0) {
+    html += `<div class="card">
+      <i class="fas fa-check-circle" style="color:#4caf50; font-size:2rem;"></i>
+      <p>No pending updates from parents.</p>
+      <p style="color:#666;">Parent-submitted measurements will appear here for review.</p>
+    </div>`;
+  } else {
+    db.pendingUpdates.forEach((update, idx) => {
+      const child = db.children.find(c => c.id === update.childId);
+      const parent = db.parents.find(p => p.id === update.parentId);
+      html += `<div class="card">
+        <strong>${child ? child.firstName + ' ' + child.lastName : 'Unknown Child'}</strong>
+        <p style="margin:4px 0;">Submitted by: ${parent ? parent.firstName + ' ' + parent.lastName : 'Unknown'}</p>
+        <div style="background:#fce4ec; padding:8px; border-radius:8px; margin:8px 0;">
+          <strong>Height:</strong> ${update.height} cm<br>
+          ${update.heightPhoto ? `<button class="btn btn-small btn-outline mt-2" onclick="viewImage('${update.heightPhoto}', 'Height Evidence')"><i class="fas fa-image"></i> View Height Photo</button>` : '<p style="color:#999;">No height photo</p>'}
+          <br>
+          <strong>Weight:</strong> ${update.weight} kg<br>
+          ${update.weightPhoto ? `<button class="btn btn-small btn-outline mt-2" onclick="viewImage('${update.weightPhoto}', 'Weight Evidence')"><i class="fas fa-image"></i> View Weight Photo</button>` : '<p style="color:#999;">No weight photo</p>'}
+          <br>
+          <strong>Date:</strong> ${update.date}
+        </div>
+        <div class="flex-wrap">
+          <button class="btn btn-small btn-success" onclick="approveUpdate(${idx})"><i class="fas fa-check"></i> Approve</button>
+          <button class="btn btn-small btn-danger" onclick="denyUpdate(${idx})"><i class="fas fa-times"></i> Deny</button>
+        </div>
+      </div>`;
+    });
+  }
+  
+  html += `<button class="btn btn-outline mt-2" onclick="navigate('dashboard')"><i class="fas fa-arrow-left"></i> Back to Dashboard</button>`;
+  document.getElementById('mainContent').innerHTML = html;
+}
+
+function viewImage(fileName, title) {
+  const modalContent = document.getElementById('confirmModalContent');
+  modalContent.innerHTML = `
+    <h3 style="color:#c62828;">${title}</h3>
+    <div style="text-align:center; margin:16px 0; background:#f5f5f5; padding:20px; border-radius:12px;">
+      <i class="fas fa-image" style="font-size:4rem; color:#c62828;"></i>
+      <p style="margin-top:8px;"><strong>${fileName}</strong></p>
+      <p style="color:#666; font-size:0.8rem;">Image uploaded as evidence</p>
+    </div>
+    <button class="btn" onclick="document.getElementById('confirmModal').classList.remove('active')">Close</button>
+  `;
+  document.getElementById('confirmModal').classList.add('active');
+}
+
+      window.approveUpdate = function (idx) {
+        const db = DB.get();
+        const update = db.pendingUpdates[idx];
+        const child = db.children.find((c) => c.id === update.childId);
+        if (child) {
+          const bmi = calculateBMI(update.height, update.weight);
+          child.measurements.push({
+            date: update.date,
+            height: update.height,
+            weight: update.weight,
+            bmi: bmi,
+            status: getNutritionalStatus(bmi, child.ageLevel),
+          });
+        }
+        db.pendingUpdates.splice(idx, 1);
+        DB.set(db);
+        renderPendingUpdates();
+      };
+
+      window.denyUpdate = function (idx) {
+        const db = DB.get();
+        db.pendingUpdates.splice(idx, 1);
+        DB.set(db);
+        renderPendingUpdates();
+      };
+
+      function renderNutritionPlans() {
+        const db = DB.get();
+        const grouped = {};
+
+        db.nutritionPlans.forEach((p) => {
+          const ages = p.ageLevels || [];
+          ages.forEach((age) => {
+            if (!grouped[age]) grouped[age] = [];
+            if (!grouped[age].find((x) => x.id === p.id)) {
+              grouped[age].push(p);
+            }
+          });
+        });
+
+        let html = `<h3 style="color:#c62828;">Nutrition Plans</h3>
+    <button class="btn mb-2" onclick="showAddPlanForm()"><i class="fas fa-plus"></i> Create Plan</button>`;
+
+        if (Object.keys(grouped).length === 0) {
+          html += `<div class="card"><p>No nutrition plans created yet.</p></div>`;
+        } else {
+          for (const [age, plans] of Object.entries(grouped)) {
+            html += `<div class="card"><h4 style="color:#c62828; margin-bottom:8px;">${age}</h4>`;
+            plans.forEach((p) => {
+              let statusText = "";
+              if (
+                p.nutritionalStatuses &&
+                Array.isArray(p.nutritionalStatuses) &&
+                p.nutritionalStatuses.length > 0
+              ) {
+                statusText = p.nutritionalStatuses.join(", ");
+              } else if (p.nutritionalStatus) {
+                statusText = p.nutritionalStatus;
+              } else {
+                statusText = "Not specified";
+              }
+
+              html += `<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #eee;">
+          <div>
+            <strong>${formatDate(p.weekStart)} to ${formatDate(p.weekEnd)}</strong><br>
+            <small style="color:#666;">Nutritional Status: ${statusText}</small>
+          </div>
+          <div class="flex-wrap">
+            <button class="btn btn-small" onclick="viewPlan('${p.id}')"><i class="fas fa-eye"></i> View</button>
+            <button class="btn btn-small btn-outline" onclick="editPlan('${p.id}')"><i class="fas fa-edit"></i> Edit</button>
+            <button class="btn btn-small btn-danger" onclick="deletePlan('${p.id}')"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>`;
+            });
+            html += `</div>`;
+          }
+        }
+        document.getElementById("mainContent").innerHTML = html;
+      }
+
+      window.deletePlan = function (planId) {
+        showConfirm(
+          "Delete Plan",
+          "Are you sure you want to delete this nutrition plan?",
+          () => {
+            const db = DB.get();
+            db.nutritionPlans = db.nutritionPlans.filter(
+              (p) => p.id !== planId,
+            );
+            DB.set(db);
+            navigate("nutrition");
+          },
+        );
+      };
+
+      function showAddPlanForm() {
+        document.getElementById("mainContent").innerHTML = `
+    <div class="card">
+      <h3 style="color:#c62828;">Create Nutrition Plan</h3>
+      <label style="font-weight:600;">Age Groups</label>
+      <div class="flex-wrap" style="background:#fce4ec; padding:10px; border-radius:12px;">
+        ${["Toddlers", "Preschool", "School Age", "Adolescent"]
+          .map(
+            (a) => `
+          <label style="background:white; padding:6px 12px; border-radius:20px; border:2px solid #c62828; cursor:pointer;">
+            <input type="checkbox" class="ageCheck" value="${a}"> ${a}
+          </label>
+        `,
+          )
+          .join("")}
+      </div>
+      <label style="font-weight:600; margin-top:12px;">Nutritional Status</label>
+      <div class="flex-wrap" style="background:#fce4ec; padding:10px; border-radius:12px;">
+        ${["Underweight", "Normal", "Overweight", "Obese"]
+          .map(
+            (s) => `
+          <label style="background:white; padding:6px 12px; border-radius:20px; border:2px solid #c62828; cursor:pointer;">
+            <input type="checkbox" class="statusCheck" value="${s}"> ${s}
+          </label>
+        `,
+          )
+          .join("")}
+      </div>
+      <label style="font-weight:600; margin-top:12px;">Week Start (Monday)</label>
+      <input id="planStart" type="date" class="input-field">
+      <label style="font-weight:600;">Week End (Sunday)</label>
+      <input id="planEnd" type="date" class="input-field">
+      
+      <h4 style="margin-top:12px; color:#c62828;">Daily Meals</h4>
+      <button class="btn btn-small btn-outline mb-2" onclick="generateMealFields()">Generate Days</button>
+      <div id="dailyMeals"></div>
+      
+      <div class="flex-wrap mt-2">
+        <button class="btn" onclick="savePlan()"><i class="fas fa-save"></i> Save Plan</button>
+        <button class="btn btn-outline" onclick="navigate('nutrition')"><i class="fas fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+  `;
+      }
+
+      window.generateMealFields = function () {
+        const days = [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ];
+        let html = "";
+        days.forEach((d) => {
+          html += `<div style="border:2px solid #ffcdd2; padding:10px; margin:5px 0; border-radius:12px;">
+      <strong style="color:#c62828;">${d}</strong>
+      <input class="input-field" placeholder="Breakfast" data-day="${d}" data-meal="breakfast">
+      <input class="input-field" placeholder="Lunch" data-day="${d}" data-meal="lunch">
+      <input class="input-field" placeholder="Dinner" data-day="${d}" data-meal="dinner">
+      <input class="input-field" placeholder="Snacks (optional)" data-day="${d}" data-meal="snacks">
+    </div>`;
+        });
+        document.getElementById("dailyMeals").innerHTML = html;
+      };
+
+      window.savePlan = function () {
+        const db = DB.get();
+        const ageChecks = document.querySelectorAll(".ageCheck:checked");
+        const statusChecks = document.querySelectorAll(".statusCheck:checked");
+        const ageLevels = Array.from(ageChecks).map((c) => c.value);
+        const statuses = Array.from(statusChecks).map((c) => c.value);
+
+        if (ageLevels.length === 0)
+          return alert("Select at least one age group");
+        if (statuses.length === 0)
+          return alert("Select at least one nutritional status");
+
+        const meals = {};
+        document.querySelectorAll("#dailyMeals input").forEach((input) => {
+          const day = input.dataset.day;
+          const meal = input.dataset.meal;
+          if (!meals[day]) meals[day] = {};
+          meals[day][meal] = input.value;
+        });
+
+        const planStart = document.getElementById("planStart").value;
+        const planEnd = document.getElementById("planEnd").value;
+        if (!planStart || !planEnd) return alert("Set date range");
+
+        const startDay = new Date(planStart).getDay();
+        const endDay = new Date(planEnd).getDay();
+        if (startDay !== 1) return alert("Week must start on Monday");
+        if (endDay !== 0) return alert("Week must end on Sunday");
+
+        db.nutritionPlans.push({
+          id: "plan_" + Date.now(),
+          ageLevels,
+          nutritionalStatuses: statuses,
+          weekStart: planStart,
+          weekEnd: planEnd,
+          meals,
+        });
+        DB.set(db);
+        navigate("nutrition");
+      };
+
+      function viewPlan(planId) {
+        const db = DB.get();
+        const plan = db.nutritionPlans.find((p) => p.id === planId);
+        if (!plan) {
+          alert("Plan not found");
+          return;
+        }
+
+        let statusText = "";
+        if (
+          plan.nutritionalStatuses &&
+          Array.isArray(plan.nutritionalStatuses) &&
+          plan.nutritionalStatuses.length > 0
+        ) {
+          statusText = plan.nutritionalStatuses.join(", ");
+        } else if (plan.nutritionalStatus) {
+          statusText = plan.nutritionalStatus;
+        } else {
+          statusText = "Not specified";
+        }
+
+        let agesText = "";
+        if (
+          plan.ageLevels &&
+          Array.isArray(plan.ageLevels) &&
+          plan.ageLevels.length > 0
+        ) {
+          agesText = plan.ageLevels.join(", ");
+        } else if (plan.ageLevel) {
+          agesText = plan.ageLevel;
+        } else {
+          agesText = "All";
+        }
+
+        const returnScreen =
+          currentUser.role === "admin" ? "nutrition" : "parentPlans";
+
+        let childName = "";
+        if (currentUser.role === "parent") {
+          const db2 = DB.get();
+          const children = db2.children.filter((c) =>
+            currentUser.data.childrenIds.includes(c.id),
+          );
+          for (const child of children) {
+            const last = child.measurements.slice(-1)[0];
+            if (last) {
+              const ages = plan.ageLevels || [];
+              const statuses = plan.nutritionalStatuses || [];
+              if (
+                ages.includes(child.ageLevel) &&
+                statuses.includes(last.status)
+              ) {
+                childName = child.firstName;
+                break;
+              }
+            }
+          }
+        }
+
+        const headingText =
+          currentUser.role === "parent" && childName
+            ? `${childName}'s Nutrition Plan`
+            : "Nutrition Plan";
+
+        let html = `<div class="card">
+    <h3 style="color:#c62828;">${headingText}</h3>
+    <p><strong>Date:</strong> ${formatDate(plan.weekStart)} to ${formatDate(plan.weekEnd)}</p>
+    <p><strong>Age Groups:</strong> ${agesText}</p>
+    <p><strong>Nutritional Status:</strong> ${statusText}</p>
+    <div class="table-container"><table>
+    <tr><th>Day</th><th>Breakfast</th><th>Lunch</th><th>Dinner</th><th>Snacks</th></tr>`;
+
+        const days = [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ];
+        days.forEach((day) => {
+          const meals = plan.meals && plan.meals[day] ? plan.meals[day] : {};
+          html += `<tr>
+      <td><strong>${day}</strong></td>
+      <td>${meals.breakfast || "-"}</td>
+      <td>${meals.lunch || "-"}</td>
+      <td>${meals.dinner || "-"}</td>
+      <td>${meals.snacks || "-"}</td>
+    </tr>`;
+        });
+
+        html += `</table></div>
+    <button class="btn btn-outline mt-2" onclick="navigate('${returnScreen}')"><i class="fas fa-arrow-left"></i> Back</button></div>`;
+        document.getElementById("mainContent").innerHTML = html;
+      }
+
+      function editPlan(planId) {
+        const db = DB.get();
+        const plan = db.nutritionPlans.find((p) => p.id === planId);
+        if (!plan) return;
+
+        document.getElementById("mainContent").innerHTML = `
+    <div class="card">
+      <h3 style="color:#c62828;">Edit Nutrition Plan</h3>
+      <label style="font-weight:600;">Age Groups</label>
+      <div class="flex-wrap" style="background:#fce4ec; padding:10px; border-radius:12px;">
+        ${["Toddlers", "Preschool", "School Age", "Adolescent"]
+          .map(
+            (a) => `
+          <label style="background:white; padding:6px 12px; border-radius:20px; border:2px solid #c62828; cursor:pointer;">
+            <input type="checkbox" class="editAgeCheck" value="${a}" ${plan.ageLevels.includes(a) ? "checked" : ""}> ${a}
+          </label>
+        `,
+          )
+          .join("")}
+      </div>
+      <label style="font-weight:600; margin-top:12px;">Nutritional Status</label>
+      <div class="flex-wrap" style="background:#fce4ec; padding:10px; border-radius:12px;">
+        ${["Underweight", "Normal", "Overweight", "Obese"]
+          .map(
+            (s) => `
+          <label style="background:white; padding:6px 12px; border-radius:20px; border:2px solid #c62828; cursor:pointer;">
+            <input type="checkbox" class="editStatusCheck" value="${s}" ${plan.nutritionalStatuses.includes(s) ? "checked" : ""}> ${s}
+          </label>
+        `,
+          )
+          .join("")}
+      </div>
+      <label style="font-weight:600; margin-top:12px;">Week Start (Sunday)</label>
+      <input id="editPlanStart" type="date" class="input-field" value="${plan.weekStart}">
+      <label style="font-weight:600;">Week End (Monday)</label>
+      <input id="editPlanEnd" type="date" class="input-field" value="${plan.weekEnd}">
+      
+      <h4 style="margin-top:12px; color:#c62828;">Daily Meals</h4>
+      <div id="editDailyMeals">
+        ${[
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ]
+          .map((d) => {
+            const meals = plan.meals[d] || {};
+            return `<div style="border:2px solid #ffcdd2; padding:10px; margin:5px 0; border-radius:12px;">
+            <strong style="color:#c62828;">${d}</strong>
+            <input class="input-field edit-meal" placeholder="Breakfast" data-day="${d}" data-meal="breakfast" value="${meals.breakfast || ""}">
+            <input class="input-field edit-meal" placeholder="Lunch" data-day="${d}" data-meal="lunch" value="${meals.lunch || ""}">
+            <input class="input-field edit-meal" placeholder="Dinner" data-day="${d}" data-meal="dinner" value="${meals.dinner || ""}">
+            <input class="input-field edit-meal" placeholder="Snacks (optional)" data-day="${d}" data-meal="snacks" value="${meals.snacks || ""}">
+          </div>`;
+          })
+          .join("")}
+      </div>
+      
+      <div class="flex-wrap mt-2">
+        <button class="btn" onclick="saveEditedPlan('${planId}')"><i class="fas fa-save"></i> Save Changes</button>
+        <button class="btn btn-outline" onclick="navigate('nutrition')"><i class="fas fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+  `;
+      }
+
+      window.saveEditedPlan = function (planId) {
+        const db = DB.get();
+        const plan = db.nutritionPlans.find((p) => p.id === planId);
+
+        plan.ageLevels = Array.from(
+          document.querySelectorAll(".editAgeCheck:checked"),
+        ).map((c) => c.value);
+        plan.nutritionalStatuses = Array.from(
+          document.querySelectorAll(".editStatusCheck:checked"),
+        ).map((c) => c.value);
+        plan.weekStart = document.getElementById("editPlanStart").value;
+        plan.weekEnd = document.getElementById("editPlanEnd").value;
+        plan.meals = {};
+        document.querySelectorAll(".edit-meal").forEach((input) => {
+          const day = input.dataset.day;
+          const meal = input.dataset.meal;
+          if (!plan.meals[day]) plan.meals[day] = {};
+          plan.meals[day][meal] = input.value;
+        });
+
+        DB.set(db);
+        navigate("nutrition");
+      };
+
+      function renderHealthPrograms() {
+        const db = DB.get();
+        const now = new Date();
+        const upcoming = [],
+          past = [];
+
+        db.healthPrograms.forEach((p) => {
+          const progDate = new Date(p.dateTime);
+          if (progDate >= now) upcoming.push(p);
+          else past.push(p);
+        });
+
+        upcoming.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
+        past.sort((a, b) => new Date(b.dateTime) - new Date(a.dateTime));
+
+        let html = `<h3 style="color:#c62828;">Health Programs</h3>
+    <button class="btn mb-2" onclick="showAddProgramForm()"><i class="fas fa-plus"></i> Add Program</button>
+    <h4 style="color:#2e7d32;">Ongoing/Upcoming</h4>`;
+
+        upcoming.forEach((p) => (html += programCard(p)));
+
+        html += `<h4 style="color:#757575; margin-top:12px;">Past Programs</h4>`;
+        past.forEach((p) => (html += programCard(p)));
+
+        document.getElementById("mainContent").innerHTML = html;
+      }
+
+      function programCard(p) {
+        const status = getProgramStatus(p.dateTime);
+        const color = getProgramStatusColor(status);
+        return `<div class="card" style="border-left:4px solid ${color};">
+    <div style="display:flex; justify-content:space-between; align-items:start;">
+      <strong>${p.title}</strong>
+      <span class="badge" style="background:${color}; color:white;">${status}</span>
+    </div>
+    <p style="margin:4px 0;"><strong>Type:</strong> ${p.type}</p>
+    <p style="margin:4px 0;"><strong>Date/Time:</strong> ${p.dateTime}</p>
+    <p style="margin:4px 0;"><strong>Location:</strong> ${p.location}</p>
+    <p style="margin:4px 0;"><strong>Age Groups:</strong> ${p.ageLevels.join(", ")}</p>
+    <p style="margin:4px 0;"><strong>Nutritional Status:</strong> ${p.nutritionalStatuses.join(", ")}</p>
+    <div class="flex-wrap mt-2">
+      ${status !== "Passed" ? `<button class="btn btn-small btn-outline" onclick="editProgram('${p.id}')"><i class="fas fa-edit"></i> Edit</button>` : ""}
+      <button class="btn btn-small btn-danger" onclick="deleteProgram('${p.id}')"><i class="fas fa-trash"></i> Delete</button>
+    </div>
+  </div>`;
+      }
+
+      function editProgram(progId) {
+        const db = DB.get();
+        const prog = db.healthPrograms.find((p) => p.id === progId);
+        if (!prog) return;
+
+        document.getElementById("mainContent").innerHTML = `
+    <div class="card">
+      <h3 style="color:#c62828;">Edit Health Program</h3>
+      <label style="font-weight:600;">Event Title</label>
+      <input id="editProgTitle" class="input-field" value="${prog.title}">
+      <label style="font-weight:600;">Event Type</label>
+      <input id="editProgType" class="input-field" value="${prog.type}">
+      <label style="font-weight:600;">Date & Time</label>
+      <input id="editProgDateTime" type="datetime-local" class="input-field" value="${prog.dateTime}">
+      <label style="font-weight:600;">Location</label>
+      <input id="editProgLocation" class="input-field" value="${prog.location}">
+      <label style="font-weight:600; margin-top:12px;">Age Groups</label>
+      <div class="flex-wrap" style="background:#fce4ec; padding:10px; border-radius:12px;">
+        ${["Toddlers", "Preschool", "School Age", "Adolescent"]
+          .map(
+            (a) => `
+          <label style="background:white; padding:6px 12px; border-radius:20px; border:2px solid #c62828; cursor:pointer;">
+            <input type="checkbox" class="editProgAge" value="${a}" ${prog.ageLevels.includes(a) ? "checked" : ""}> ${a}
+          </label>
+        `,
+          )
+          .join("")}
+      </div>
+      <label style="font-weight:600; margin-top:12px;">Nutritional Status</label>
+      <div class="flex-wrap" style="background:#fce4ec; padding:10px; border-radius:12px;">
+        ${["Underweight", "Normal", "Overweight", "Obese"]
+          .map(
+            (s) => `
+          <label style="background:white; padding:6px 12px; border-radius:20px; border:2px solid #c62828; cursor:pointer;">
+            <input type="checkbox" class="editProgStatus" value="${s}" ${prog.nutritionalStatuses.includes(s) ? "checked" : ""}> ${s}
+          </label>
+        `,
+          )
+          .join("")}
+      </div>
+      <div class="flex-wrap mt-2">
+        <button class="btn" onclick="saveEditedProgram('${progId}')"><i class="fas fa-save"></i> Save Changes</button>
+        <button class="btn btn-outline" onclick="navigate('programs')"><i class="fas fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+  `;
+      }
+
+      window.saveEditedProgram = function (progId) {
+        const db = DB.get();
+        const prog = db.healthPrograms.find((p) => p.id === progId);
+        prog.title = document.getElementById("editProgTitle").value;
+        prog.type = document.getElementById("editProgType").value;
+        prog.dateTime = document.getElementById("editProgDateTime").value;
+        prog.location = document.getElementById("editProgLocation").value;
+        prog.ageLevels = Array.from(
+          document.querySelectorAll(".editProgAge:checked"),
+        ).map((c) => c.value);
+        prog.nutritionalStatuses = Array.from(
+          document.querySelectorAll(".editProgStatus:checked"),
+        ).map((c) => c.value);
+        DB.set(db);
+        navigate("programs");
+      };
+
+      window.deleteProgram = function (progId) {
+        showConfirm(
+          "Delete Program",
+          "Are you sure you want to delete this health program?",
+          () => {
+            const db = DB.get();
+            db.healthPrograms = db.healthPrograms.filter(
+              (p) => p.id !== progId,
+            );
+            DB.set(db);
+            navigate("programs");
+          },
+        );
+      };
+
+      function showAddProgramForm() {
+        document.getElementById("mainContent").innerHTML = `
+    <div class="card">
+      <h3 style="color:#c62828;">Add Health Program</h3>
+      <label style="font-weight:600;">Event Title</label>
+      <input id="progTitle" class="input-field" placeholder="Event Title">
+      <label style="font-weight:600;">Event Type</label>
+      <input id="progType" class="input-field" placeholder="Event Type (e.g., Vaccination, Seminar)">
+      <label style="font-weight:600;">Date & Time</label>
+      <input id="progDateTime" type="datetime-local" class="input-field">
+      <label style="font-weight:600;">Location</label>
+      <input id="progLocation" class="input-field" placeholder="Location">
+      <label style="font-weight:600; margin-top:12px;">Age Groups</label>
+      <div class="flex-wrap" style="background:#fce4ec; padding:10px; border-radius:12px;">
+        ${["Toddlers", "Preschool", "School Age", "Adolescent"]
+          .map(
+            (a) => `
+          <label style="background:white; padding:6px 12px; border-radius:20px; border:2px solid #c62828; cursor:pointer;">
+            <input type="checkbox" class="progAge" value="${a}"> ${a}
+          </label>
+        `,
+          )
+          .join("")}
+      </div>
+      <label style="font-weight:600; margin-top:12px;">Nutritional Status</label>
+      <div class="flex-wrap" style="background:#fce4ec; padding:10px; border-radius:12px;">
+        ${["Underweight", "Normal", "Overweight", "Obese"]
+          .map(
+            (s) => `
+          <label style="background:white; padding:6px 12px; border-radius:20px; border:2px solid #c62828; cursor:pointer;">
+            <input type="checkbox" class="progStatus" value="${s}"> ${s}
+          </label>
+        `,
+          )
+          .join("")}
+      </div>
+      <div class="flex-wrap mt-2">
+        <button class="btn" onclick="saveProgram()"><i class="fas fa-save"></i> Save Program</button>
+        <button class="btn btn-outline" onclick="navigate('programs')"><i class="fas fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+  `;
+      }
+
+      window.saveProgram = function () {
+        const db = DB.get();
+        const ageLevels = Array.from(
+          document.querySelectorAll(".progAge:checked"),
+        ).map((c) => c.value);
+        const statuses = Array.from(
+          document.querySelectorAll(".progStatus:checked"),
+        ).map((c) => c.value);
+        if (ageLevels.length === 0)
+          return alert("Select at least one age group");
+        if (statuses.length === 0)
+          return alert("Select at least one nutritional status");
+
+        db.healthPrograms.push({
+          id: "prog_" + Date.now(),
+          title: document.getElementById("progTitle").value,
+          type: document.getElementById("progType").value,
+          dateTime: document.getElementById("progDateTime").value,
+          location: document.getElementById("progLocation").value,
+          ageLevels,
+          nutritionalStatuses: statuses,
+        });
+        DB.set(db);
+        navigate("programs");
+      };
+
+      function renderParentAccounts() {
+        const db = DB.get();
+        let html = `<h3 style="color:#c62828;">Parent Accounts</h3>`;
+
+        html += `<h4 style="margin-top:8px;">Verified Accounts</h4>`;
+        db.parents.forEach((p) => {
+          html += `<div class="card" style="display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <strong>${p.firstName} ${p.lastName}</strong><br>
+        <small style="color:#666;">${p.email || p.contactNumber} • ${p.parentType}</small>
+      </div>
+      <div class="flex-wrap">
+        <button class="btn btn-small" onclick="viewParentProfile('${p.id}')"><i class="fas fa-eye"></i></button>
+        <button class="btn btn-small btn-danger" onclick="deleteParent('${p.id}')"><i class="fas fa-trash"></i></button>
+      </div>
+    </div>`;
+        });
+
+        html += `<h4 style="margin-top:16px;">Pending Verification</h4>`;
+        if (db.pendingParents.length === 0) {
+          html += `<div class="card"><p>No pending accounts.</p></div>`;
+        } else {
+          db.pendingParents.forEach((p) => {
+            html += `<div class="card">
+        <strong>${p.firstName} ${p.lastName}</strong>
+        <p style="margin:4px 0;">${p.parentType} • ${p.contactNumber}</p>
+        <div class="flex-wrap">
+          <button class="btn btn-small" onclick="viewParentProfile('${p.id}', true)"><i class="fas fa-eye"></i></button>
+          <button class="btn btn-small btn-success" onclick="verifyParent('${p.id}')"><i class="fas fa-check"></i> Verify</button>
+          <button class="btn btn-small btn-danger" onclick="discardParent('${p.id}')"><i class="fas fa-times"></i> Discard</button>
+        </div>
+      </div>`;
+          });
+        }
+
+        document.getElementById("mainContent").innerHTML = html;
+      }
+
+      window.deleteParent = function (pid) {
+        showConfirm(
+          "Delete Parent Account",
+          "Are you sure you want to delete this parent account?",
+          () => {
+            const db = DB.get();
+            db.parents = db.parents.filter((p) => p.id !== pid);
+            DB.set(db);
+            navigate("parents");
+          },
+        );
+      };
+
+      window.verifyParent = function (pid) {
+        const db = DB.get();
+        const idx = db.pendingParents.findIndex((p) => p.id === pid);
+        if (idx > -1) {
+          const parent = db.pendingParents.splice(idx, 1)[0];
+          parent.verified = true;
+          db.parents.push(parent);
+          DB.set(db);
+        }
+        navigate("parents");
+      };
+
+      window.discardParent = function (pid) {
+        showConfirm(
+          "Discard Account",
+          "Are you sure you want to discard this pending account?",
+          () => {
+            const db = DB.get();
+            db.pendingParents = db.pendingParents.filter((p) => p.id !== pid);
+            DB.set(db);
+            navigate("parents");
+          },
+        );
+      };
+
+      function viewParentProfile(pid, isPending = false) {
+        const db = DB.get();
+        const parent = (isPending ? db.pendingParents : db.parents).find(
+          (p) => p.id === pid,
+        );
+        if (!parent) return;
+
+        document.getElementById("mainContent").innerHTML = `
+    <div class="card">
+      <h3 style="color:#c62828;">${parent.firstName} ${parent.lastName}</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:12px 0;">
+        <div><strong>Type:</strong> ${parent.parentType}</div>
+        <div><strong>Sex:</strong> ${parent.sex}</div>
+        <div><strong>Birthdate:</strong> ${parent.dob}</div>
+        <div><strong>Age:</strong> ${parent.age}</div>
+        <div><strong>Occupation:</strong> ${parent.occupation}</div>
+        <div><strong>Contact:</strong> ${parent.contactNumber}</div>
+      </div>
+      <p><strong>Email:</strong> ${parent.email || "N/A"}</p>
+      <p><strong>Address:</strong> ${parent.address}</p>
+      <p><strong>Status:</strong> <span class="badge ${parent.verified ? "badge-green" : "badge-yellow"}">${parent.verified ? "Verified" : "Pending"}</span></p>
+      <button class="btn btn-outline mt-2" onclick="navigate('parents')"><i class="fas fa-arrow-left"></i> Back</button>
+    </div>
+  `;
+      }
+
+      function renderParentChildrenView() {
+        const db = DB.get();
+        const children = db.children.filter((c) =>
+          currentUser.data.childrenIds.includes(c.id),
+        );
+
+        let html = `<h3 style="color:#c62828;">My Children</h3>`;
+        if (children.length === 0) {
+          html += `<div class="card"><p>No children registered yet.</p></div>`;
+        } else {
+          children.forEach((c) => {
+            const last = c.measurements.slice(-1)[0];
+            const childAge = getAge(c.dob);
+            html += `<div class="card">
+        <strong style="font-size:1.1rem;">${c.firstName} ${c.lastName}</strong>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px; margin:8px 0;">
+          <div><strong>Age:</strong> ${childAge}</div>
+          <div><strong>Sex:</strong> ${c.sex}</div>
+        </div>
+        ${
+          last
+            ? `
+          <div style="background:#fce4ec; padding:10px; border-radius:12px;">
+            <strong>Current:</strong> ${last.height} cm • ${last.weight} kg • BMI ${last.bmi}<br>
+            Status: <span class="badge" style="background:${getStatusColor(last.status)}; color:white;">${last.status}</span>
+          </div>
+        `
+            : "<p>No measurements yet</p>"
+        }
+        <div class="flex-wrap mt-2">
+          <button class="btn btn-small" onclick="parentUpdateChild('${c.id}')"><i class="fas fa-edit"></i> Update</button>
+          <button class="btn btn-small btn-outline" onclick="viewMeasurementHistory('${c.id}')"><i class="fas fa-history"></i> History</button>
+        </div>
+      </div>`;
+          });
+        }
+        document.getElementById("mainContent").innerHTML = html;
+      }
+
+      function parentUpdateChild(childId) {
+        const db = DB.get();
+        const child = db.children.find((c) => c.id === childId);
+        const last = child.measurements.slice(-1)[0];
+
+        document.getElementById("mainContent").innerHTML = `
+    <div class="card">
+      <h3 style="color:#c62828;">Update Measurements for ${child.firstName}</h3>
+      <label style="font-weight:600;">Height (cm)</label>
+      <input id="puHeight" type="number" class="input-field" placeholder="Height" step="0.1" value="${last ? last.height : ""}">
+      <label style="font-weight:600;">Height Photo Evidence</label>
+      <input type="file" class="input-field" accept="image/*" id="puHeightPhoto">
+      <label style="font-weight:600;">Weight (kg)</label>
+      <input id="puWeight" type="number" class="input-field" placeholder="Weight" step="0.1" value="${last ? last.weight : ""}">
+      <label style="font-weight:600;">Weight Photo Evidence</label>
+      <input type="file" class="input-field" accept="image/*" id="puWeightPhoto">
+      <label style="font-weight:600;">Date</label>
+      <input id="puDate" type="date" class="input-field">
+      <div class="flex-wrap mt-2">
+        <button class="btn" onclick="submitParentUpdate('${childId}')"><i class="fas fa-paper-plane"></i> Submit</button>
+        <button class="btn btn-outline" onclick="navigate('parentChildren')"><i class="fas fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+  `;
+      }
+
+      window.submitParentUpdate = function (childId) {
+        const db = DB.get();
+        const height = parseFloat(document.getElementById("puHeight").value);
+        const weight = parseFloat(document.getElementById("puWeight").value);
+        const date = document.getElementById("puDate").value;
+        const heightPhoto = document.getElementById("puHeightPhoto").files[0];
+        const weightPhoto = document.getElementById("puWeightPhoto").files[0];
+
+        if (!height || !weight || !date)
+          return alert("Please fill all measurement fields");
+        if (!heightPhoto && !weightPhoto)
+          return alert("Please attach at least one photo evidence");
+
+        db.pendingUpdates.push({
+          childId,
+          height,
+          weight,
+          date,
+          heightPhoto: heightPhoto ? heightPhoto.name : null,
+          weightPhoto: weightPhoto ? weightPhoto.name : null,
+          parentId: currentUser.data.id,
+        });
+        DB.set(db);
+        alert("Measurement update submitted for admin review");
+        navigate("parentChildren");
+      };
+
+      function renderParentNutritionView() {
+        const db = DB.get();
+        const children = db.children.filter((c) =>
+          currentUser.data.childrenIds.includes(c.id),
+        );
+        let html = `<h3 style="color:#c62828;">Nutrition Plans</h3>`;
+        let found = false;
+
+        children.forEach((c) => {
+          const last = c.measurements.slice(-1)[0];
+          if (!last) return;
+
+          const plans = db.nutritionPlans.filter((p) => {
+            const ages = p.ageLevels || (p.ageLevel ? [p.ageLevel] : []);
+            const statuses =
+              p.nutritionalStatuses ||
+              (p.nutritionalStatus ? [p.nutritionalStatus] : []);
+            const ageMatch = Array.isArray(ages) && ages.includes(c.ageLevel);
+            const statusMatch =
+              Array.isArray(statuses) && statuses.includes(last.status);
+            return ageMatch && statusMatch;
+          });
+
+          if (plans.length > 0) {
+            found = true;
+            plans.forEach((plan) => {
+              const statuses = plan.nutritionalStatuses ||
+                plan.nutritionalStatus || ["Normal"];
+              const statusText = Array.isArray(statuses)
+                ? statuses.join(", ")
+                : statuses;
+
+              html += `<div class="card" style="margin-bottom:8px;">
+          <strong style="color:#c62828;">${c.firstName}'s Nutrition Plan</strong>
+          <p style="margin:4px 0;"><strong>Date:</strong> ${formatDate(plan.weekStart)} to ${formatDate(plan.weekEnd)}</p>
+          <p style="margin:4px 0;"><strong>Nutritional Status:</strong> ${statusText}</p>
+          <button class="btn btn-small" onclick="viewPlan('${plan.id}')"><i class="fas fa-eye"></i> View Plan</button>
+        </div>`;
+            });
+          }
+        });
+
+        if (!found)
+          html += `<div class="card"><p>No nutrition plans assigned yet.</p></div>`;
+        document.getElementById("mainContent").innerHTML = html;
+      }
+
+      function renderParentProgramsView() {
+        const db = DB.get();
+        const children = db.children.filter((c) =>
+          currentUser.data.childrenIds.includes(c.id),
+        );
+        let html = `<h3 style="color:#c62828;">Health Programs</h3>`;
+        let found = false;
+
+        db.healthPrograms.forEach((prog) => {
+          const ages = prog.ageLevels || (prog.ageLevel ? [prog.ageLevel] : []);
+          const statuses =
+            prog.nutritionalStatuses ||
+            (prog.nutritionalStatus ? [prog.nutritionalStatus] : []);
+
+          const matchingChildren = children.filter((c) => {
+            const last = c.measurements.slice(-1)[0];
+            if (!last) return false;
+
+            const ageMatch = Array.isArray(ages) && ages.includes(c.ageLevel);
+            const statusMatch =
+              Array.isArray(statuses) && statuses.includes(last.status);
+
+            return ageMatch && statusMatch;
+          });
+
+          if (matchingChildren.length > 0) {
+            found = true;
+            const programStatus = getProgramStatus(prog.dateTime);
+            const color = getProgramStatusColor(programStatus);
+            const agesText = Array.isArray(ages) ? ages.join(", ") : ages;
+            const statusesText = Array.isArray(statuses)
+              ? statuses.join(", ")
+              : statuses;
+
+            html += `<div class="card" style="border-left:4px solid ${color};">
+        <div style="display:flex; justify-content:space-between;">
+          <strong>${prog.title}</strong>
+          <span class="badge" style="background:${color}; color:white;">${programStatus}</span>
+        </div>
+        <p style="margin:4px 0;"><strong>Type:</strong> ${prog.type}</p>
+        <p style="margin:4px 0;"><strong>Date/Time:</strong> ${prog.dateTime}</p>
+        <p style="margin:4px 0;"><strong>Location:</strong> ${prog.location}</p>
+        <p style="margin:4px 0;"><strong>Age Groups:</strong> ${agesText}</p>
+        <p style="margin:4px 0;"><strong>Nutritional Status:</strong> ${statusesText}</p>
+        <p style="margin:4px 0;"><strong>Assigned to:</strong> ${matchingChildren.map((c) => c.firstName).join(", ")}</p>
+        <button class="btn btn-small btn-success mt-2" onclick="confirmAttendance('${prog.id}')"><i class="fas fa-check"></i> Confirm Attendance</button>
+      </div>`;
+          }
+        });
+
+        if (!found)
+          html += `<div class="card"><p>No upcoming health programs for your children.</p></div>`;
+        document.getElementById("mainContent").innerHTML = html;
+      }
+
+      window.confirmAttendance = function (progId) {
+        alert("Attendance confirmed! Thank you for participating.");
+      };
+
+      function renderParentAccountSettings() {
+        document.getElementById("mainContent").innerHTML = `
+    <div class="card">
+      <h3 style="color:#c62828;">Account Settings</h3>
+      <label style="font-weight:600;">First Name</label>
+      <input id="pFirstName" class="input-field" value="${currentUser.data.firstName}">
+      <label style="font-weight:600;">Middle Name</label>
+      <input id="pMiddleName" class="input-field" value="${currentUser.data.middleName || ""}">
+      <label style="font-weight:600;">Last Name</label>
+      <input id="pLastName" class="input-field" value="${currentUser.data.lastName}">
+      <label style="font-weight:600;">Contact Number</label>
+      <input id="pContact" class="input-field" value="${currentUser.data.contactNumber}">
+      <label style="font-weight:600;">Email</label>
+      <input id="pEmail" class="input-field" value="${currentUser.data.email || ""}">
+      <label style="font-weight:600;">Address</label>
+      <input id="pAddress" class="input-field" value="${currentUser.data.address}">
+      <label style="font-weight:600;">Occupation</label>
+      <input id="pOccupation" class="input-field" value="${currentUser.data.occupation}">
+      <button class="btn mt-2" onclick="updateParentInfo()"><i class="fas fa-save"></i> Update Info</button>
+    </div>
+    
+    <div class="card">
+      <h4 style="color:#c62828;">Change Password</h4>
+      <input id="pCurrentPass" type="password" class="input-field" placeholder="Current Password">
+      <input id="pNewPass" type="password" class="input-field" placeholder="New Password">
+      <input id="pConfirmPass" type="password" class="input-field" placeholder="Confirm New Password">
+      <button class="btn mt-2" onclick="updateParentPassword()"><i class="fas fa-key"></i> Update Password</button>
+    </div>
+    
+    <button class="btn btn-outline" onclick="navigate('parentChildren')"><i class="fas fa-arrow-left"></i> Back</button>
+  `;
+      }
+
+      window.updateParentInfo = function () {
+        const db = DB.get();
+        const parent = db.parents.find((p) => p.id === currentUser.data.id);
+        parent.firstName = document.getElementById("pFirstName").value;
+        parent.middleName = document.getElementById("pMiddleName").value;
+        parent.lastName = document.getElementById("pLastName").value;
+        parent.contactNumber = document.getElementById("pContact").value;
+        parent.email = document.getElementById("pEmail").value;
+        parent.address = document.getElementById("pAddress").value;
+        parent.occupation = document.getElementById("pOccupation").value;
+        currentUser.data = parent;
+        DB.set(db);
+        alert("Account updated successfully");
+      };
+
+      window.updateParentPassword = function () {
+        const current = document.getElementById("pCurrentPass").value;
+        const newPass = document.getElementById("pNewPass").value;
+        const confirm = document.getElementById("pConfirmPass").value;
+
+        if (current !== currentUser.data.password)
+          return alert("Current password incorrect");
+        if (newPass !== confirm) return alert("Passwords do not match");
+        if (newPass.length < 8) return alert("Minimum 8 characters");
+
+        const db = DB.get();
+        const parent = db.parents.find((p) => p.id === currentUser.data.id);
+        parent.password = newPass;
+        currentUser.data = parent;
+        DB.set(db);
+        alert("Password updated successfully");
+      };
+      renderApp();
+    </script>
+  </body>
+</html>
