@@ -63,8 +63,6 @@ npx cap open android
 
 Then build the APK through Android Studio.
 
----
-
 ## 4. Tech Stack
 
 - Frontend: HTML, CSS, JavaScript
