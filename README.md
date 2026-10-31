@@ -8,7 +8,6 @@
 ### Description
 MediBata is a mobile application that helps Barangay Health Workers (BHWs) and parents living in Mapaniqui, Pampanga monitor children's nutrition levels and receive diet recommendations. It addresses malnutrition and obesity among children aged 2–17 through logging BMI records, providing appropriate nutrition plans and announcement notifications of barangay health programs for children.
 
----
 
 ## 2. Key Features
 
@@ -27,8 +26,6 @@ MediBata is a mobile application that helps Barangay Health Workers (BHWs) and p
 3.	View personalized weekly nutrition plans for their children.
 4.	Receive health program announcements.
 5.	Update their children's profile and measurements with photo evidence.
-
----
 
 ## 3. Getting Started
 
@@ -77,8 +74,6 @@ Then build the APK through Android Studio.
 - IDE: Visual Studio Code
 - APK Build Tool: Android Studio
 
----
-
 ## 5. Configuration
 
 - Ensure Node.js and npm are properly installed.
@@ -113,8 +108,6 @@ npx cap open android
 ```
 
 - SQLite is used as the local database for offline data storage.
-
----
 
 ## 6. License & Copyright
 
