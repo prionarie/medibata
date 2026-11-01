@@ -1,15 +1,17 @@
-# MediBata
+# MediBata: Children's Nutritional Status Monitoring and Diet Planning App
 
-## 1. Project Overview
-
-### App Name
-**MediBata**
-
-### Description
 MediBata is a mobile application that helps Barangay Health Workers (BHWs) and parents living in Mapaniqui, Pampanga monitor children's nutrition levels and receive diet recommendations. It addresses malnutrition and obesity among children aged 2–17 through logging BMI records, providing appropriate nutrition plans and announcement notifications of barangay health programs for children.
 
+<<<<<<< HEAD
+=======
+![MediBata Home Page](/screenshots/medibata.png)
+>>>>>>> d4b1611 (medibata sqlite configuration and build apk with gradle)
 
 ## 2. Key Features
+
+**For a detailed guide, view the user manual:**  [Medibata User Manual](/assets/usermanual.pdf)
+
+## 1. Key Features
 
 ### Barangay Health Workers (Admin)
 1.	Manage children’s profiles and log height and weight records.
@@ -19,6 +21,10 @@ MediBata is a mobile application that helps Barangay Health Workers (BHWs) and p
 5.	Verify registration of parent accounts and link them to children’s health records.
 6.	View statistics on children’s health records and registered parent accounts.
 
+<p align="left">
+  <img src="screenshots/admin_image1.png" width="45%" alt="Admin Screen 1" />
+  <img src="screenshots/admin_image2.png" width="45%" alt="Admin Screen 2" />
+</p>
 
 ### Parents (Users)
 1.	Register for a user account.
@@ -27,33 +33,54 @@ MediBata is a mobile application that helps Barangay Health Workers (BHWs) and p
 4.	Receive health program announcements.
 5.	Update their children's profile and measurements with photo evidence.
 
+<<<<<<< HEAD
 ## 3. Getting Started
+=======
+<p align="left">
+  <img src="screenshots/parent_image1.png" width="45%" alt="Parent Screen 1" />
+  <img src="screenshots/parent_image2.png" width="45%" alt="Parent Screen 2" />
+</p>
 
-### Prerequisites
-- Node.js
-- npm
-- Visual Studio Code
-- Android Studio
+## 2. Tech Stack
+>>>>>>> d4b1611 (medibata sqlite configuration and build apk with gradle)
+
+| Layer | Technologies |
+|---|---|
+| **Frontend** | HTML, CSS, JavaScript |
+| **Database** | SQLite |
+| **APK Build Tool** | Gradle |
+
+## 3. Installation
+
+**MediBata Mobile App**
+
+1. Locate the executable APK in "android/app/build/outputs/apk/app-depug.apk"
+2. Simply download and open the APK to run the app
+ 
+For developers, please follow the procedures for project installation and APK configuration:
+
+### 3.1. Prerequisites
+Please download the following:
+- Java SDK 21
 - Android SDK
-- Android 8.0+ device or emulator
-- Git
 
-### Installation
+### 3.2. Installation
 
 ```bash
-git clone https://github.com/yourusername/medibata.git
+git clone https://github.com/prionarie/medibata.git
 cd medibata
 npm install
 ```
 
-### Running the App
+### 3.3. Running the App
 
-#### Start the Development Server
+- Open `www/index.html` directly in a browser or run:
 
 ```bash
-npm run start
+npx serve www
 ```
 
+<<<<<<< HEAD
 #### Build Android APK using Capacitor
 
 ```bash
@@ -92,22 +119,30 @@ npx cap init
 ```bash
 npx cap add android
 ```
+=======
+### 3.4. Build Android APK
+>>>>>>> d4b1611 (medibata sqlite configuration and build apk with gradle)
 
 - Synchronize project files before building:
 
 ```bash
-npx cap sync
+    npx cap sync android
 ```
 
-- Open the Android project in Android Studio:
+- Build APK
 
 ```bash
-npx cap open android
+    cd android
+    ./gradlew assembleDebug
 ```
-
+- The APK is written to `android/app/build/outputs/apk/debug/`.
 - SQLite is used as the local database for offline data storage.
 
+<<<<<<< HEAD
 ## 6. License & Copyright
+=======
+## 4. License & Copyright
+>>>>>>> d4b1611 (medibata sqlite configuration and build apk with gradle)
 
 ### Copyright
 © 2026 MediBata. All rights reserved.

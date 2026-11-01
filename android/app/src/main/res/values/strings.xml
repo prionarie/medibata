@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MediBata</string>
+    <string name="title_activity_main">MediBata</string>
+    <string name="package_name">com.medibata.app</string>
+    <string name="custom_url_scheme">com.medibata.app</string>
+</resources>
