@@ -23,6 +23,13 @@
 5.	Verify registration of parent accounts and link them to children’s health records.
 6.	View statistics on children’s health records and registered parent accounts.
 
+### Parents (Users)
+1.	Register for a user account.
+2.	View their children’s profile and nutritional status.
+3.	View personalized weekly nutrition plans for their children.
+4.	Receive health program announcements.
+5.	Update their children's profile and measurements with photo evidence.
+
 <p align="left">
   <img src="assets/dashboard.png" width="45%" alt="Dashboard Screen" />
   <img src="assets/children.png" width="45%" alt="Children Screen" />
@@ -32,13 +39,6 @@
   <img src="assets/nutrition.png" width="45%" alt="Diet Plan Screen" />
   <img src="assets/program.png" width="45%" alt="Program Screen" />
 </p>
-
-### Parents (Users)
-1.	Register for a user account.
-2.	View their children’s profile and nutritional status.
-3.	View personalized weekly nutrition plans for their children.
-4.	Receive health program announcements.
-5.	Update their children's profile and measurements with photo evidence.
 
 ## 2. Tech Stack
 
