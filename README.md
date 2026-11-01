@@ -1,6 +1,6 @@
 # MediBata: Children's Nutritional Planning Mobile App
 
-![MediBata Logo](/www/icon-512.png)
+![MediBata Logo](/www/icon-192.png)
 
 MediBata is a mobile application that helps Barangay Health Workers (BHWs) and parents living in Mapaniqui, Pampanga monitor children's nutrition levels and receive diet recommendations. It addresses malnutrition and obesity among children aged 2–17 through logging BMI records, providing appropriate nutrition plans and announcement notifications of barangay health programs for children.
 
