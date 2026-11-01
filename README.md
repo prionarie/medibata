@@ -24,8 +24,13 @@
 6.	View statistics on children’s health records and registered parent accounts.
 
 <p align="left">
-  <img src="assets/adminimg1.png" width="45%" alt="Admin Screen 1" />
-  <img src="assets/adminimg2.png" width="45%" alt="Admin Screen 2" />
+  <img src="assets/dashboard.png" width="45%" alt="Dashboard Screen" />
+  <img src="assets/children.png" width="45%" alt="Children Screen" />
+</p>
+
+<p align="left">
+  <img src="assets/nutrition.png" width="45%" alt="Diet Plan Screen" />
+  <img src="assets/program.png" width="45%" alt="Program Screen" />
 </p>
 
 ### Parents (Users)
@@ -34,11 +39,6 @@
 3.	View personalized weekly nutrition plans for their children.
 4.	Receive health program announcements.
 5.	Update their children's profile and measurements with photo evidence.
-
-<p align="left">
-  <img src="assets/parentimg1.png" width="45%" alt="Parent Screen 1" />
-  <img src="assets/parentimg2.png" width="45%" alt="Parent Screen 2" />
-</p>
 
 ## 2. Tech Stack
 
