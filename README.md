@@ -4,11 +4,9 @@ MediBata is a mobile application that helps Barangay Health Workers (BHWs) and p
 
 ![MediBata Home Page](/assets/medibata.png)
 
-## 2. Key Features
+## 1. Key Features
 
 **For a detailed guide, view the user manual:**  [Medibata User Manual](/assets/usermanual.pdf)
-
-## 1. Key Features
 
 ### Barangay Health Workers (Admin)
 1.	Manage children’s profiles and log height and weight records.
