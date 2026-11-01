@@ -2,10 +2,7 @@
 
 MediBata is a mobile application that helps Barangay Health Workers (BHWs) and parents living in Mapaniqui, Pampanga monitor children's nutrition levels and receive diet recommendations. It addresses malnutrition and obesity among children aged 2–17 through logging BMI records, providing appropriate nutrition plans and announcement notifications of barangay health programs for children.
 
-<<<<<<< HEAD
-=======
 ![MediBata Home Page](/screenshots/medibata.png)
->>>>>>> d4b1611 (medibata sqlite configuration and build apk with gradle)
 
 ## 2. Key Features
 
@@ -22,8 +19,8 @@ MediBata is a mobile application that helps Barangay Health Workers (BHWs) and p
 6.	View statistics on children’s health records and registered parent accounts.
 
 <p align="left">
-  <img src="screenshots/admin_image1.png" width="45%" alt="Admin Screen 1" />
-  <img src="screenshots/admin_image2.png" width="45%" alt="Admin Screen 2" />
+  <img src="screenshots/adminimg1.png" width="45%" alt="Admin Screen 1" />
+  <img src="screenshots/adminimg2.png" width="45%" alt="Admin Screen 2" />
 </p>
 
 ### Parents (Users)
@@ -33,16 +30,12 @@ MediBata is a mobile application that helps Barangay Health Workers (BHWs) and p
 4.	Receive health program announcements.
 5.	Update their children's profile and measurements with photo evidence.
 
-<<<<<<< HEAD
-## 3. Getting Started
-=======
 <p align="left">
-  <img src="screenshots/parent_image1.png" width="45%" alt="Parent Screen 1" />
-  <img src="screenshots/parent_image2.png" width="45%" alt="Parent Screen 2" />
+  <img src="screenshots/parentimg1.png" width="45%" alt="Parent Screen 1" />
+  <img src="screenshots/parentimg2.png" width="45%" alt="Parent Screen 2" />
 </p>
 
 ## 2. Tech Stack
->>>>>>> d4b1611 (medibata sqlite configuration and build apk with gradle)
 
 | Layer | Technologies |
 |---|---|
@@ -80,48 +73,7 @@ npm install
 npx serve www
 ```
 
-<<<<<<< HEAD
-#### Build Android APK using Capacitor
-
-```bash
-npx cap sync
-npx cap open android
-```
-
-Then build the APK through Android Studio.
-
-## 4. Tech Stack
-
-- Frontend: HTML, CSS, JavaScript
-- Backend Logic: JavaScript
-- Mobile Framework: Capacitor
-- Local Database: SQLite
-- IDE: Visual Studio Code
-- APK Build Tool: Android Studio
-
-## 5. Configuration
-
-- Ensure Node.js and npm are properly installed.
-- Install project dependencies using:
-
-```bash
-npm install
-```
-
-- Initialize Capacitor configuration:
-
-```bash
-npx cap init
-```
-
-- Add Android platform support:
-
-```bash
-npx cap add android
-```
-=======
 ### 3.4. Build Android APK
->>>>>>> d4b1611 (medibata sqlite configuration and build apk with gradle)
 
 - Synchronize project files before building:
 
@@ -138,11 +90,7 @@ npx cap add android
 - The APK is written to `android/app/build/outputs/apk/debug/`.
 - SQLite is used as the local database for offline data storage.
 
-<<<<<<< HEAD
-## 6. License & Copyright
-=======
 ## 4. License & Copyright
->>>>>>> d4b1611 (medibata sqlite configuration and build apk with gradle)
 
 ### Copyright
 © 2026 MediBata. All rights reserved.
