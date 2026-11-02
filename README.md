@@ -1,4 +1,4 @@
-# MediBata: Children's Nutritio Tracker and Diet Planning Mobile App
+# MediBata: Children's Nutritional Planning Mobile App
 
 <table border="0">
   <tr>
