@@ -15,7 +15,7 @@
 
 **For a detailed guide, please view the user manual:**  [Medibata User Manual](/doc/usermanual.pdf)
 
-### Barangay Health Workers (Admin)
+### 1.1. Barangay Health Workers (Admin)
 1.	Manage children’s profiles and log height and weight records.
 2.	Calculate their BMI and automatically classify their nutritional status.
 3.	Publish weekly nutrition plans according to children’s nutritional status.
@@ -23,7 +23,7 @@
 5.	Verify registration of parent accounts and link them to children’s health records.
 6.	View statistics on children’s health records and registered parent accounts.
 
-### Parents (Users)
+### 1.2. Parents (Users)
 1.	Register for a user account.
 2.	View their children’s profile and nutritional status.
 3.	View personalized weekly nutrition plans for their children.
