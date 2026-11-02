@@ -94,6 +94,7 @@ npx serve www
 ```
 - The APK is written to `android/app/build/outputs/apk/debug/`.
 - SQLite is used as the local database for offline data storage.
+- Option: remove sample data seed in adapter.js.
 
 ## 4. License & Copyright
 
