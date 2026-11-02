@@ -50,7 +50,7 @@ This application was developed as a requirement for our course in **Application 
 | **Database** | SQLite |
 | **APK Build Tool** | Gradle |
 
-## 3. Installation
+## 3. Installation and Contribution
 
 **MediBata Mobile App**
 
