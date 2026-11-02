@@ -2,8 +2,8 @@
 
 <table border="0">
   <tr>
-    <td valign="top" width="20%">
-      <img src="www/icon-192.png" alt="MediBata Logo" width="100%">
+    <td valign="top" align="center" width="20%">
+      <img src="www/icon-192.png" alt="MediBata Logo" width="75%">
     </td>
     <td valign="top" width="80%">
       <p>MediBata is a mobile application developed for Mapaniqui Health Center in Mapaniqui, Pampanga. It helps Barangay Health Workers (BHWs) and parents monitor children's nutrition levels and receive diet recommendations. It addresses malnutrition and obesity among children aged 2–17 through logging BMI records, providing appropriate nutrition plans and announcement notifications of barangay health programs for children.</p>
