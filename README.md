@@ -102,7 +102,7 @@ This was the first mobile application we built. Initially, we were leaning towar
 
 Currently, the mobile application's database relies on one device and can only be updated by one person at a time. This is suitable for the setting of Brgy. Mapaniqui Health Center. However, to be fully scalable on an organizational level, migrating the app from SQLite offline storage to a synchronized database hosted on the cloud (i.e. Firebase) is recommended.
 
-As mentioned before, adapting the application for mobile-native tools will also benefit the system for increased performance on the target device and a more efficient database, in both storage and performance.
+As mentioned before, adapting the application for mobile-native tools will also benefit the system in terms of increased performance on target devices and a more efficient database, in both storage and performance.
 
 ## 5. License & Copyright
 
