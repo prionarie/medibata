@@ -31,13 +31,10 @@
 5.	Update their children's profile and measurements with photo evidence.
 
 <p align="left">
-  <img src="doc/dashboard.png" width="45%" alt="Dashboard Analytics" />
-  <img src="doc/children.png" width="45%" alt="Children's Measurements" />
-</p>
-
-<p align="left">
-  <img src="doc/nutrition.png" width="45%" alt="Nutrition Plan" />
-  <img src="doc/program.png" width="45%" alt="Program Announcement" />
+  <img src="doc/dashboard.png" width="24%" alt="Dashboard Analytics" />
+  <img src="doc/children.png" width="24%" alt="Children's Measurements" />
+  <img src="doc/nutrition.png" width="24%" alt="Nutrition Plan" />
+  <img src="doc/program.png" width="24%" alt="Program Announcement" />
 </p>
 
 ## 2. Tech Stack
@@ -47,6 +44,9 @@
 | **Frontend** | HTML, CSS, JavaScript |
 | **Database** | SQLite |
 | **APK Build Tool** | Gradle |
+
+
+This was the first mobile application we built. Initially, we were leaning towards using mobile-native programming languages like Kotlin or Flutter. However, we considered the application should be usable on desktop devices as spreadsheet applications were the primary tool for recording children's health data. Development was within a limited timeframe of one month so the application was built web-first with HTML/CSS/JS and wrapped for mobile dimensions and accessed via WebView.
 
 ## 3. Installation
 
@@ -96,9 +96,7 @@ npx serve www
 - SQLite is used as the local database for offline data storage.
 - Option: remove sample data seed in adapter.js.
 
-## 4. Challenges and Recommendations
-
-This was the first mobile application we built. Initially, we were leaning towards using mobile-native programming languages like Kotlin or Flutter. However, we considered the application should be usable on desktop devices as spreadsheet applications were the primary tool for recording children's health data. Development was within a limited timeframe of one month so the application was built web-first with HTML/CSS/JS and wrapped for mobile dimensions and accessed via WebView.
+## 4. Recommendations
 
 Currently, the mobile application's database relies on one device and can only be updated by one person at a time. This is suitable for the setting of Brgy. Mapaniqui Health Center. However, to be fully scalable on an organizational level, migrating the app from SQLite offline storage to a synchronized database hosted on the cloud (i.e. Firebase) is recommended.
 
