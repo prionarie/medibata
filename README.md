@@ -45,8 +45,7 @@
 | **Database** | SQLite |
 | **APK Build Tool** | Gradle |
 
-
-This was the first mobile application we built. Initially, we were leaning towards using mobile-native programming languages like Kotlin or Flutter. However, we considered the application should be usable on desktop devices as spreadsheet applications were the primary tool for recording children's health data. Development was within a limited timeframe of one month so the application was built web-first with HTML/CSS/JS and wrapped for mobile dimensions and accessed via WebView.
+This was the first mobile application we built. Initially, we were leaning towards using mobile-native programming languages like Kotlin or Flutter. However, we figured the application should be usable on desktop devices because spreadsheet applications were the primary tool for recording children's health data in the Barangay Health Center. Because of this, the application was built web-first with HTML/CSS/JS, wrapped for mobile dimensions and accessed via WebView on mobile devices.
 
 ## 3. Installation
 
