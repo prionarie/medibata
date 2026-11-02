@@ -82,14 +82,14 @@ npx serve www
 - Synchronize project files before building:
 
 ```bash
-    npx cap sync android
+npx cap sync android
 ```
 
 - Build APK
 
 ```bash
-    cd android
-    ./gradlew assembleDebug
+cd android
+./gradlew assembleDebug
 ```
 - The APK is written to `android/app/build/outputs/apk/debug/`.
 - SQLite is used as the local database for offline data storage.
