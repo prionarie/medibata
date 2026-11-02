@@ -1,5 +1,7 @@
 # MediBata: Children's Nutritional Planning Mobile App
 
+This application was developed as a requirement for our course in **Application Development and Emerging Technologies**.
+
 <table border="0">
   <tr>
     <td valign="top" width="20%">
