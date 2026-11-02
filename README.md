@@ -1,4 +1,4 @@
-# MediBata: Children's Nutritional Planning Mobile App
+# MediBata: Children's Nutritio Tracker and Diet Planning Mobile App
 
 <table border="0">
   <tr>
@@ -55,14 +55,14 @@
  
 For developers, please follow the procedures for project installation and APK configuration:
 
-### 4.1. Prerequisites
+### 3.1. Prerequisites
 - Git
 - Node.js
 - Java SDK 21
 - Android SDK
 
 
-### 4.2. Setup
+### 3.2. Setup
 
 ```bash
 git clone https://github.com/prionarie/medibata.git
@@ -70,7 +70,7 @@ cd medibata
 npm install
 ```
 
-### 4.3. Running the App
+### 3.3. Running the App
 
 - Open `www/index.html` directly in a browser or run:
 
@@ -78,7 +78,7 @@ npm install
 npx serve www
 ```
 
-### 4.4. Building the Android APK
+### 3.4. Building the Android APK
 
 - Synchronize project files before building:
 
@@ -96,7 +96,7 @@ npx serve www
 - SQLite is used as the local database for offline data storage.
 - Option: remove sample data seed in adapter.js.
 
-## 5. Challenges and Recommendations
+## 4. Challenges and Recommendations
 
 This was the first mobile application we built. Initially, we were leaning towards using mobile-native programming languages like Kotlin or Flutter. However, we considered the application should be usable on desktop devices as spreadsheet applications were the primary tool for recording children's health data. Development was within a limited timeframe of one month so the application was built web-first with HTML/CSS/JS and wrapped for mobile dimensions and accessed via WebView.
 
@@ -104,7 +104,7 @@ Currently, the mobile application's database relies on one device and can only b
 
 As mentioned before, adapting the application for mobile-native tools will also benefit the system for increased performance on the target device and a more efficient database, in both storage and performance.
 
-## 6. License & Copyright
+## 5. License & Copyright
 
 ### Copyright
 © 2026 MediBata. All rights reserved.
