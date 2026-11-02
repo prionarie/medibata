@@ -13,7 +13,7 @@
 
 ## 1. Key Features
 
-**For a detailed guide, view the user manual:**  [Medibata User Manual](/assets/usermanual.pdf)
+**For a detailed guide, please view the user manual:**  [Medibata User Manual](/assets/usermanual.pdf)
 
 ### Barangay Health Workers (Admin)
 1.	Manage children’s profiles and log height and weight records.
