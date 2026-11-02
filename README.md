@@ -48,20 +48,10 @@
 | **Database** | SQLite |
 | **APK Build Tool** | Gradle |
 
-## 3. Challenges and Recommendations
+## 3. Installation
 
-This was the first mobile application we built. Initially, we were leaning towards using mobile-native programming languages like Kotlin or Flutter. However, we considered the application should be usable on desktop devices as spreadsheet applications were the primary tool for recording children's health data. Development was within a limited timeframe of one month so the application was built web-first with HTML/CSS/JS and wrapped for mobile dimensions and accessed via WebView.
-
-Currently, the mobile application's database relies on one device and can only be updated by one person at a time. This is suitable for the setting of Brgy. Mapaniqui Health Center. However, to be fully scalable on an organizational level, migrating the app from SQLite offline storage to a synchronized database hosted on the cloud (i.e. Firebase) is recommended.
-
-As mentioned before, adapting the application for mobile-native tools will also benefit the system for increased performance on the target device and a more efficient database, in both storage and performance.
-
-## 4. Installation and Contribution
-
-**MediBata Mobile App**
-
-1. Locate the executable APK in "android/app/build/outputs/apk/app-depug.apk"
-2. Simply download and open the APK to run the app
+#### Mobile App
+> Locate and download the executable APK in `android/app/build/outputs/apk/app-depug.apk` to install and run the app.
  
 For developers, please follow the procedures for project installation and APK configuration:
 
@@ -72,7 +62,7 @@ For developers, please follow the procedures for project installation and APK co
 - Android SDK
 
 
-### 4.2. Installation
+### 4.2. Setup
 
 ```bash
 git clone https://github.com/prionarie/medibata.git
@@ -106,7 +96,15 @@ npx serve www
 - SQLite is used as the local database for offline data storage.
 - Option: remove sample data seed in adapter.js.
 
-## 5. License & Copyright
+## 5. Challenges and Recommendations
+
+This was the first mobile application we built. Initially, we were leaning towards using mobile-native programming languages like Kotlin or Flutter. However, we considered the application should be usable on desktop devices as spreadsheet applications were the primary tool for recording children's health data. Development was within a limited timeframe of one month so the application was built web-first with HTML/CSS/JS and wrapped for mobile dimensions and accessed via WebView.
+
+Currently, the mobile application's database relies on one device and can only be updated by one person at a time. This is suitable for the setting of Brgy. Mapaniqui Health Center. However, to be fully scalable on an organizational level, migrating the app from SQLite offline storage to a synchronized database hosted on the cloud (i.e. Firebase) is recommended.
+
+As mentioned before, adapting the application for mobile-native tools will also benefit the system for increased performance on the target device and a more efficient database, in both storage and performance.
+
+## 6. License & Copyright
 
 ### Copyright
 © 2026 MediBata. All rights reserved.
